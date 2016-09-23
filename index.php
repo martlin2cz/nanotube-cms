@@ -1,11 +1,22 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Hello!</title>
-	</head>
-	<body>
-		<h1>nanotube-cms</h1>
-		<p>This will be ASAP the <em>nanotup-cms</em>. Stay tuned!</p>
-	</body>
-</html>
+<?php 
+	require_once('simple-cms/single-page-layout.php'); 
+	
+single_page_layout_template(
+	/* specify HTML head headers here */	
+'		<!-- headers -->
+		<script type="text/javascript" src="jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script type="text/javascript" src="scripts.js"></script>
+', 
+	/* specify title here */
+'		<!-- title -->
+		<i>(logo)</i>
+',
+/* specify footer here */
+'		<!-- footer -->
+		<p><em>Powered by simple-cms</em></p>
+');	
+
+
+
+?>
