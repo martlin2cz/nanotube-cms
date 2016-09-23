@@ -14,7 +14,7 @@ single_page_layout_template(
 ',
 /* specify footer here */
 '		<!-- footer -->
-		<p><em>Powered by simple-cms</em></p>
+		<p><em>Powered by <a href="https://github.com/martlin2cz/nanotube-cms">nanotube-cms<a/></em></p>
 ');	
 
 
