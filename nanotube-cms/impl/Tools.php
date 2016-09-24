@@ -25,7 +25,7 @@ class Tools {
 	}
 
 
-	static public function run_html_with_php($php) {
+	static public function run_html_with_php($apc, $php) {
 		$wrapped_php = " ?> " . $php . " <?php ";
 		try {
 			eval($wrapped_php); // !!!
@@ -39,8 +39,11 @@ class Tools {
 	}
 
 	static public function render_array($array) {
+		self::render_string("\n");
+
 		foreach ($array as $string) {
-			render_string($string);
+			self::render_string($string);
+			self::render_string("\n");
 		}
 	}
 

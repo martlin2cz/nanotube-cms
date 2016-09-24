@@ -9,8 +9,12 @@ class Sites {
 	
 		$this->sites = Array(
 			'welcome' => new Site('welcome', "Vítejte", "Ahoj, vítejte tu!"),
-			'about-us' => new Site('about-us', "O nás", "Jsme Lorem. Děláme Ipsum."),
-			'with-error' => new Site('with-error', "Stránka s chybou", "Toto je HTML, <?php echo 'Toto je PHP'; ?> a teď bude 1/0: <?php \$x = 1/0; ?>")
+			'about-us' => new Site('about-us', "O nás", "Jsme <strong>Lorem</strong>. Děláme <em>Ipsum</em>."),
+			'with-error' => new Site('with-error', "Stránka s chybou", 
+				"Toto je HTML, <?php echo 'Toto je PHP'; ?> a teď bude 1/0: <?php \$x = 1/0; ?>"),
+			'with-plugins' => new Site('with-plugins', "Stránka s pluginy", 
+			"Plugin Hello World: <?php HelloWorldPlugin::put(\$apc, 'Ahoj, světe!'); ?>. Hezké, ne? A menu? <?php MenuPlugin::put(\$apc, '?id=\$site-id'); ?>")
+
 		);
 	}
 
