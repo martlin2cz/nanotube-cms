@@ -14,18 +14,24 @@ class Tools {
 		self::$sites = new Sites();
 	}
 
-	static public function run_php($php) {
-		ob_start();
 
+	static public function start_capturing_output() {
+		ob_start();
+	}
+	
+	static public function finish_capturing_output() {
+		$string = ob_get_clean();
+		return $string;
+	}
+
+
+	static public function run_html_with_php($php) {
 		$wrapped_php = " ?> " . $php . " <?php ";
 		try {
 			eval($wrapped_php); // !!!
 		} catch (Exception $exception) {
-			echo "ERROR:" . $exception; //TODO error handling
+			echo "\n<div class='nm-error'>" . $exception . "</div>\n"; //TODO error handling
 		}
-
-		$string = ob_get_clean();
-		return $string;
 	}
 
 	static public function render_string($string) {

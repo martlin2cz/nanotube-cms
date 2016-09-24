@@ -1,35 +1,32 @@
 <?php 
 
-require_once(__DIR__ . '/../AbstractBodyTemplate.php');
+require_once(__DIR__ . '/PrematureRenderingBodyTemplate.php');
 require_once(__DIR__ . '/../../impl/Tools.php');
 require_once(__DIR__ . '/../../impl/database/Sites.php');
 
-class SingleBaseBodyTemplate implements AbstractBodyTemplate {
-	private $config;
-	private $string_content;
+class SingleBaseBodyTemplate extends PrematureRenderingBodyTemplate {
+
 	private $sites;
 
 	public function __construct($config) {
-		$this->config = $config;
-		$this->string_content = null;
+		parent::__construct($config);
 		$this->sites = new Sites();
 	}
 
-	public function prepare_body($apc) {
-		$php = "";
-		foreach ($this->sites->all_sites() as $site) {	
-			$php	.= "<h2>" . $site->get_title() . "</h2>\n"
-						. "\n<article>\n"	
-						. $site->get_content()
-						. "\n</article>\n";
-		}
-		
-		$this->string_content = Tools::run_php($php);
-	}
 
-	public function render_body($apc) {
-		Tools::render_array($apc->get_before_content());
-		Tools::render_string($this->string_content);
-		Tools::render_array($apc->get_after_content());
-	}
+	public function run_body_content($apc) { ?>
+
+		<main>	
+			<h1><?= $this->get_config()->get_web_title() ?></h1>
+			<?php foreach ($this->sites->all_sites() as $site) { ?>	
+				<article>
+					<h2><?= $site->get_title() ?></h2>
+				
+					<?php Tools::run_html_with_php($site->get_content()); ?>
+
+				</article>
+			<?php } ?>
+
+		</main>
+	<?php }
 }

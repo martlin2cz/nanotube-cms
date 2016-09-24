@@ -29,13 +29,17 @@ class PageTemplater {
 		$this->head_template->prepare_head($apc);
 	}
 	
-	public function render_html($apc) { ?><!DOCTYPE>
+	public function render_html($apc) { ?><!DOCTYPE html>
 		<html>
 			<head>
+
 				<?php $this->head_template->render_head($apc); ?>
+
 			</head>
 			<body>
+
 				<?php $this->body_template->render_body($apc); ?>
+
 			</body>
 		</html>
 	<?php }
