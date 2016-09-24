@@ -15,7 +15,7 @@ class HelloWorldPlugin extends AbstractPlugin {
 	}
 
 	public function get_usage() {
-		return "Insert <code><?php hello_world('the text you wish to display'); ?></code> wherever you want.";	
+		return "Insert <code><?php plugin_HelloWorld('the text you wish to display'); ?></code> wherever you want.";	
 	}
 
 	public function render_plugin_content($apc) {

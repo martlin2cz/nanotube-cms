@@ -13,7 +13,7 @@ class Sites {
 			'with-error' => new Site('with-error', "Stránka s chybou", 
 				"Toto je HTML, <?php echo 'Toto je PHP'; ?> a teď bude 1/0: <?php \$x = 1/0; ?>"),
 			'with-plugins' => new Site('with-plugins', "Stránka s pluginy", 
-			"Plugin Hello World: <?php plugin_HelloWorld('Ahoj, světe!'); ?>. Hezké, ne? A menu? <?php plugin_Menu('?id=\$site-id'); ?>")
+			"Plugin Hello World: <?php plugin_HelloWorld('Ahoj, světe!'); ?>. Hezké, ne? A menu? <?php plugin_Menu('?id=\$site-id'); ?>. A co <?php plugin_Fortune(); ?>?")
 
 		);
 	}

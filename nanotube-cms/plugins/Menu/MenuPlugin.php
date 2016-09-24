@@ -20,7 +20,7 @@ class MenuPlugin extends AbstractPlugin {
 	}
 
 	public function get_usage() {
-		return "<code><?php MenuPlugin::put(\$apc, 'format'); ?></code>, where <code>format</code> should be like: <code>/\$site-id</code> or <code>/?page=\$site-id</code>";	
+		return "<code><?php plugin_Menu(\$apc, 'links format'); ?></code>, where <code>links format</code> should be like: <code>/\$site-id</code> or <code>/?page=\$site-id</code>";	
 	}
 
 	public function render_plugin_content($apc) { ?>
