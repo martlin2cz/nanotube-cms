@@ -1,6 +1,6 @@
 <?php
 
-require_once('Site.php');
+require_once(__DIR__. '/../dataobj/Site.php');
 
 class Sites {
 	private $sites;
@@ -9,7 +9,8 @@ class Sites {
 	
 		$this->sites = Array(
 			'welcome' => new Site('welcome', "Vítejte", "Ahoj, vítejte tu!"),
-			'about-us' => new Site('about-us', "O nás", "Jsme Lorem Ipsum")
+			'about-us' => new Site('about-us', "O nás", "Jsme Lorem. Děláme Ipsum."),
+			'with-error' => new Site('with-error', "Stránka s chybou", "Toto je HTML, <?php echo 'Toto je PHP'; ?> a teď bude 1/0: <?php \$x = 1/0; ?>")
 		);
 	}
 
