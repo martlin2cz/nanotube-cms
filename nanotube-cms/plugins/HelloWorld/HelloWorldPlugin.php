@@ -18,7 +18,7 @@ class HelloWorldPlugin extends AbstractPlugin {
 		return "Insert <code><?php hello_world('the text you wish to display'); ?></code> wherever you want.";	
 	}
 
-	public function render_plugin($apc) {
+	public function render_plugin_content($apc) {
 		echo $this->text;
 		
 		$apc->add_head('<!-- this head comment was added by Hello World plugin -->');
@@ -27,10 +27,14 @@ class HelloWorldPlugin extends AbstractPlugin {
 		$apc->set_title_suffix(', with Hello World plugin!');
 	}
 
-	static public function put($apc, $text) {
+	static public function put($text) {
 		$plugin = new HelloWorldPlugin($text);
-		$plugin->render_plugin($apc);	
+		$plugin->render_plugin();	
 	}
+}
+
+function plugin_HelloWorld($text) {
+	HelloWorldPlugin::put($text);
 }
 
 ?>

@@ -2,6 +2,9 @@
 
 require_once(__DIR__ . '/../AbstractBodyTemplate.php');
 require_once(__DIR__ . '/../../impl/Tools.php');
+require_once(__DIR__ . '/../../impl/Plugins.php');
+
+
 
 abstract class PrematureRenderingBodyTemplate implements AbstractBodyTemplate {
 	private $config;
@@ -22,9 +25,11 @@ abstract class PrematureRenderingBodyTemplate implements AbstractBodyTemplate {
 
 	public function premature_render_body($apc) {
 		Tools::start_capturing_output();
+		Plugins::start_using_plugins($apc);
 
 		$this->run_body_content($apc);
 
+		Plugins::finish_plugins_using();
 		$html = Tools::finish_capturing_output();
 		$this->string_content = $html;
 	}

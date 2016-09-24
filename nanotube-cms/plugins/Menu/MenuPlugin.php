@@ -23,7 +23,7 @@ class MenuPlugin extends AbstractPlugin {
 		return "<code><?php MenuPlugin::put(\$apc, 'format'); ?></code>, where <code>format</code> should be like: <code>/\$site-id</code> or <code>/?page=\$site-id</code>";	
 	}
 
-	public function render_plugin($apc) { ?>
+	public function render_plugin_content($apc) { ?>
 		<ol>
 		<?php foreach ($this->sites->all_sites() as $site) { ?>
 			<li><a href="<?= $this->make_url($site) ?>"><?= $site->get_title() ?></a></li>
@@ -35,10 +35,14 @@ class MenuPlugin extends AbstractPlugin {
 		return str_replace(SITE_ID_FORMAT_SEQ, $site->get_id(), $this->format);
 	}
 
-	static public function put($apc, $format) {
+	static public function put($format) {
 		$plugin = new MenuPlugin($format);
-		$plugin->render_plugin($apc);	
+		$plugin->render_plugin();	
 	}
+}
+
+function plugin_Menu($format) {
+	MenuPlugin::put($format);
 }
 
 ?>

@@ -9,7 +9,7 @@ require_once(__DIR__ . '/../nanotube-cms/impl/Tools.php');
 require_once(__DIR__ . '/../nanotube-cms/templates/PageTemplater.php');
 require_once(__DIR__ . '/../nanotube-cms/templates/head_templates/StandartBaseHeadTemplate.php');
 require_once(__DIR__ . '/../nanotube-cms/templates/body_templates/StandartBaseBodyTemplate.php');
-require_once(__DIR__ . '/../nanotube-cms/impl/database/Plugins.php');
+require_once(__DIR__ . '/../nanotube-cms/impl/Plugins.php');
 
 
 //initalize web configuration

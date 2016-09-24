@@ -14,7 +14,14 @@ abstract class AbstractPlugin {
 
 	public abstract function get_usage();
 	
-	public abstract function render_plugin($apc);
+	public function render_plugin() {
+		$apc = Plugins::get_current_apc();
+		$this->render_plugin_content($apc);
+	}
+
+	public abstract function render_plugin_content($apc);
+
+
 }
 
 ?>
