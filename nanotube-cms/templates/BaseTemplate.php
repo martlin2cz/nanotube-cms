@@ -1,8 +1,13 @@
 <?php
 
+require_once(__DIR__ . '/../impl/database/Config.php');
+
 class BaseTemplate {
 
-	public function __construct() {
+	protected $config;
+
+	public function __construct($config) {
+		$this->config = $config;
 	}
 
 	public function render() { ?><!DOCTYPE>
@@ -27,5 +32,3 @@ class BaseTemplate {
 }
 
 ?>
-
-

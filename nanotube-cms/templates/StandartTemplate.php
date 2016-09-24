@@ -8,7 +8,8 @@ class StandartTemplate extends BaseTemplate {
 
 	protected $site;
 
-	public function __construct() {
+	public function __construct($config) {
+		parent::__construct($config);
 		$this->site = $this->find_site();
 	}
 
@@ -30,7 +31,9 @@ class StandartTemplate extends BaseTemplate {
 	}
 
 	public function render_title() {
-		echo $this->site->get_title();
+		echo $this->site->get_title() 
+			. " | " 
+			. $this->config->get_web_title();
 	}
 
 	public function render_content() {
@@ -44,5 +47,3 @@ class StandartTemplate extends BaseTemplate {
 }
 
 ?>
-
-

@@ -5,8 +5,8 @@ class ExtendedStandartTemplate extends StandartTemplate {
 	private $header;
 	private $footer;
 
-	public function __construct($header, $footer) {
-		parent::__construct();
+	public function __construct($config, $header, $footer) {
+		parent::__construct($config);
 
 		$this->header = $header;
 		$this->footer = $footer;
@@ -17,7 +17,7 @@ class ExtendedStandartTemplate extends StandartTemplate {
 			<?php $this->render_item($this->header); ?>
 		</header>
 		<main>
-			<h1><?php $this->render_title(); ?></h1>
+			<h1><?= $this->site->get_title(); ?></h1>
 			<article>
 				<?php	$this->render_content(); ?>
 			</article>
@@ -37,5 +37,3 @@ class ExtendedStandartTemplate extends StandartTemplate {
 }
 
 ?>
-
-
