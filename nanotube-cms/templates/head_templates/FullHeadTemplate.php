@@ -2,11 +2,11 @@
 
 require_once(__DIR__ . '/../AbstractHeadTemplate.php');
 
-class BaseHeadTemplate implements AbstractHeadTemplate {
-	private $config;
+class BaseHeadTemplate implements BaseHeadTemplate {
 	private $title;
 
 	public function __construct($config, $title) {
+		__
 		$this->config = $config;
 		$this->title = $title;
 	}
@@ -15,16 +15,13 @@ class BaseHeadTemplate implements AbstractHeadTemplate {
 		//nothing
 	}
 
-	public function render_head($apc) {
-		$this->put_core_heads($apc);
-		$this->put_aditional_heads($apc);	
-	}
 
 	protected function put_core_heads($apc) { ?>
 		<!-- basic heads: -->
 		<meta charset="UTF-8">
 		<title><?= $this->title ?> <?= $apc->get_title_suffix() ?></title>	
 		<!-- TODO: meta tags here-->
+		<!-- somthing goes here, or not? -->
 	<?php } 
 
 	protected function put_aditional_heads($apc) { ?>	

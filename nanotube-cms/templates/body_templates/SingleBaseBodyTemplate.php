@@ -13,6 +13,9 @@ class SingleBaseBodyTemplate extends PrematureRenderingBodyTemplate {
 		$this->sites = new Sites();
 	}
 
+	public function get_sites() {
+		return $this->sites;
+	}
 
 	public function run_body_content($apc) { ?>
 

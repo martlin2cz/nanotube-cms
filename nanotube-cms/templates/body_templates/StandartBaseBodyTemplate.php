@@ -11,6 +11,10 @@ class StandartBaseBodyTemplate extends PrematureRenderingBodyTemplate {
 		$this->site = $site;
 	}
 
+	public function get_site() {
+		return $this->site;
+	}
+
 
 	public function run_body_content($apc) { ?>
 		<h1><?= $this->site->get_title() ?></h1>
