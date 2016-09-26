@@ -20,7 +20,7 @@ class Plugins {
 		self::$current_apc = $apc;
 	}
 
-	static public function finish_plugins_using() {
+	static public function finish_using_plugins() {
 		self::$current_apc = null;
 	}
 

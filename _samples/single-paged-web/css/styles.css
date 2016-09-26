@@ -1,0 +1,39 @@
+header {
+	background-color: rgb(255, 230, 200);
+	padding: 2%;
+}
+
+article {
+	background-color: rgb(240, 255, 220);
+	padding: 1%;
+	margin: 1%;
+}
+
+h2 {
+	text-decoration: underline;
+}
+
+footer {
+	background-color: rgb(200, 255, 200);
+	padding: 2%;
+}
+
+/* menu styling */
+
+nav {
+	display: inline;
+}
+
+nav ol {
+	display: inline;
+	padding: 0;
+}
+
+nav li {
+	display: inline;
+	list-style: none;
+}
+
+nav a {
+	color: rgb(0, 50, 100);
+}

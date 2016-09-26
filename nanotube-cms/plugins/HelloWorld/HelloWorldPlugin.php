@@ -19,6 +19,7 @@ class HelloWorldPlugin extends AbstractPlugin {
 	}
 
 	public function render_plugin_content($apc) {
+		
 		echo $this->text;
 		
 		$apc->add_head('<!-- this head comment was added by Hello World plugin -->');
