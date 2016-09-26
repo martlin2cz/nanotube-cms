@@ -77,6 +77,11 @@ class Tools {
 		}
 	}
 
+	static public function redirect_to_relative($relative) {
+		$absolute = $_SERVER['REQUEST_URI'] . '/..' . $relative;
+		header('Location: ' . $absolute);
+	}
+
 }
 
 Tools::_static_init();

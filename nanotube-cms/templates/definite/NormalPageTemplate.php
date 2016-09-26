@@ -25,7 +25,7 @@ abstract class NormalPageTemplate extends PreRenderingPageTemplate {
 	}
 
 	protected function do_head($apc) { ?>
-		<title><?= $this->get_title() ?></title>
+		<title><?= $this->get_title() ?><?= $apc->get_title_suffix() ?></title>
 		<!--TODO meta tags, styles, ... -->		
 		<link rel="stylesheet" href="css/styles.css" type="text/css" />
 		<script type="text/javascript" src="js/scripts.js"></script>
