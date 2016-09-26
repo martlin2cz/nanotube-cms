@@ -9,6 +9,6 @@ require_once(__DIR__ . '/../../impl/Tools.php');
 //TODO check password !!!!
 LogingIn::get()->log_in();
 
-Tools::redirect_to_relative('/../');
+Tools::redirect_to_relative('../');
 
 ?>

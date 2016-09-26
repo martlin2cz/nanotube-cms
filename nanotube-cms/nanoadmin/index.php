@@ -1,5 +1,5 @@
 <?php require_once(__DIR__ . '/impl/NAtemplate.php'); ?>
-<?php NAtemplate::before_document(false); ?>
+<?php NAtemplate::before_document(false, ''); ?>
 <!DOCTYPE html>
 <html>
 	<head>

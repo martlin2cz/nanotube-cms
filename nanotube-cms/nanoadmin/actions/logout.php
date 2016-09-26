@@ -8,6 +8,6 @@ require_once(__DIR__ . '/../../impl/Tools.php');
 
 LogingIn::get()->log_out();
 
-Tools::redirect_to_relative('/../');
+Tools::redirect_to_relative('../');
 
 ?>

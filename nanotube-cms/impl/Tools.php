@@ -78,8 +78,9 @@ class Tools {
 	}
 
 	static public function redirect_to_relative($relative) {
-		$absolute = $_SERVER['REQUEST_URI'] . '/..' . $relative;
-		header('Location: ' . $absolute);
+		$absolute = dirname($_SERVER['REQUEST_URI']) . '/' . $relative;
+//		echo "--- REDIRECTING TO " . $_SERVER['REQUEST_URI'] . " 'S " . $relative . " ---> $absolute ---";
+				header('Location: ' . $absolute);
 	}
 
 }
