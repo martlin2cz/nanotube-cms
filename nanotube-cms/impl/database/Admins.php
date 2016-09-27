@@ -3,7 +3,18 @@
 require_once(__DIR__. '/../dataobj/Admin.php');
 
 class Admins {
+	static private $instance;
+
 	private $admins;
+
+	static public function _static_init() {
+		self::$instance = new Sites();
+	}
+
+	static public function get() {
+		return self::$instance;
+	}
+
 
 	public function __construct() {
 	

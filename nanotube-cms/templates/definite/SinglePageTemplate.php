@@ -14,7 +14,7 @@ abstract class SinglePageTemplate extends PreRenderingPageTemplate {
 
 	public function __construct($config) {
 		$this->config = $config;
-		$this->sites = new Sites();
+		$this->sites = Sites::get();
 	}
 
 	public function get_config() {

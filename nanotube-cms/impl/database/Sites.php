@@ -3,7 +3,17 @@
 require_once(__DIR__. '/../dataobj/Site.php');
 
 class Sites {
+	static private $instance;
+
 	private $sites;
+
+	static public function _static_init() {
+		self::$instance = new Sites();
+	}
+
+	static public function get() {
+		return self::$instance;
+	}
 
 	public function __construct() {
 	
@@ -53,6 +63,6 @@ class Sites {
 	}
 }
 
-
+Sites::_static_init();
 
 ?>

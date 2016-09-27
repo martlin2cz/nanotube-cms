@@ -11,7 +11,7 @@ if (isset($_GET) && isset($_GET['site-id'])) {
 }
 
 if ($site_id) {
-	$sites = new Sites();
+	$sites = Sites::get();
 	$site = $sites->get_site($site_id);
 	$is_edit = true;
 } else {

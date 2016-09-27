@@ -27,7 +27,7 @@ $is_update = ($current_site_id != '');
 
 // load/create data object
 if ($is_update) {
-	$sites = new Sites();
+	$sites = Sites::get();
 	$site = $sites->get_site($current_site_id);
 } else {
 	$site = new Site();

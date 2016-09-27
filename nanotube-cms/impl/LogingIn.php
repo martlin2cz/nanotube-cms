@@ -13,7 +13,7 @@ class LogingIn {
 	/// initialization of singleton /////////////////////////////////////////////
 	protected function __construct() {
 		session_start();
-		$this->admins = new Admins();
+		$this->admins = Admins::get();
 	}
 
 	static public function initialize_instance() {

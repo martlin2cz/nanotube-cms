@@ -11,7 +11,7 @@ class Tools {
 	}
 
 	static public function _static_init() {
-		self::$sites = new Sites();
+		self::$sites = Sites::get();
 	}
 
 

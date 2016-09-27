@@ -12,7 +12,7 @@ class MenuPlugin extends AbstractPlugin {
 	public function __construct($format) {
 		parent::__construct('Menu');
 		$this->format = $format;
-		$this->sites = new Sites();
+		$this->sites = Sites::get();
 	}
 
 	public function get_description() {

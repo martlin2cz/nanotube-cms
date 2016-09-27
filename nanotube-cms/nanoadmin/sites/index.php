@@ -11,7 +11,7 @@
 <?php 
 require_once(__DIR__ . '/../../impl/database/Sites.php');
 
-$sites = new Sites();
+$sites = Sites::get();
 ?>
 
 	<table>
