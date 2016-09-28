@@ -4,21 +4,16 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once(__DIR__ . '/../../impl/WebTools.php');
-require_once(__DIR__ . '/../../impl/ActionTemplate.php');
-
 require_once(__DIR__ . '/../../../impl/Tools.php');
 require_once(__DIR__ . '/../../../impl/database/Sites.php');
 require_once(__DIR__ . '/../../../impl/LogingIn.php');
 
-ActionTemplate::before_start("../../", true);
 
 // check params
 WebTools::require_posted_id('current-site-id', true);
 WebTools::require_posted_id('site-id', false);
 WebTools::require_posted_string('title', false);
 WebTools::require_posted_string('content', false);
-
-ActionTemplate::check_errors();
 
 // infer params
 $current_site_id = $_POST['current-site-id'];
@@ -29,13 +24,13 @@ $user = LogingIn::get()->logged_user();	//TODO
 $timestamp = time();	//TODO
 
 $is_update = ($current_site_id != '');
-$sites = Sites::get();
 
 // load/create data object
 if ($is_update) {
+	$sites = Sites::get();
 	$site = $sites->get_site($current_site_id);
 } else {
-	$site = new Site(null, null, null, null, null, null, null, null);
+	$site = new Site();
 }
 
 // modify data object
@@ -58,8 +53,7 @@ if ($is_update) {
 	$sites->create_site($site);
 }
 
-ActionTemplate::check_errors();
-ActionTemplate::success("../");
+Tools::redirect_to_relative('../');
 
 ?>
 

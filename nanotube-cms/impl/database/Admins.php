@@ -8,7 +8,7 @@ class Admins {
 	private $admins;
 
 	static public function _static_init() {
-		self::$instance = new Sites();
+		self::$instance = new Admins();
 	}
 
 	static public function get() {
@@ -35,6 +35,8 @@ class Admins {
 		return "Admins: " . count($this->admins);
 	}
 }
+
+Admins::_static_init();
 
 
 

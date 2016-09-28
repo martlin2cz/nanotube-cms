@@ -1,5 +1,7 @@
 <?php
 
+require_once(__DIR__ . '/../../impl/Errors.php');
+
 define("IDENTIFICATOR_REGEX", '/[a-zA-Z0-9\\-_\\.]+/');
 
 class WebTools {
@@ -8,7 +10,7 @@ class WebTools {
 		if (isset($_POST) && isset($_POST[$key_name])) {
 			$value = $_POST[$key_name];
 		} else {
-			self::web_error("Params error", "Missing POST param $key_name");
+			Errors::add("Params error", "Missing POST param $key_name", false);
 			return;
 		}
 
@@ -18,7 +20,7 @@ class WebTools {
 
 		$match = preg_match(IDENTIFICATOR_REGEX, $value);
 		if (!$match) {
-			self::web_error("Params error", "Param $key_name must be (nonepty) identificator");
+			Errors::add("Params error", "Param $key_name must be (nonepty) identificator", false);
 			return;
 		}
 	}
@@ -28,22 +30,15 @@ class WebTools {
 		if (isset($_POST) && isset($_POST[$key_name])) {
 			$value = $_POST[$key_name];
 		} else {
-			self::web_error("Params error", "Missing POST param $key_name");
+			Errors::add("Params error", "Missing POST param $key_name", false);
 			return;
 		}
 
 		if (!$allow_empty && $value == '') {
-			self::web_error("Params error", "Param $key_name must be (nonepty) string");
+			Errors::add("Params error", "Param $key_name must be (nonepty) string", false);
 			return;
 
 		}
 	}
-
-
-	static public function web_error($title, $message) {
-		echo "<div class=\"error\"><h1>$title</h1><p>$message</p><button onclick=\"history.back()\">Back</button></div>";
-		die();
-	}
-
 
 }

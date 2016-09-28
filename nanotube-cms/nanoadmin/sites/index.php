@@ -1,13 +1,7 @@
-<?php require_once(__DIR__ . '/../impl/NAtemplate.php'); ?>
-<?php NAtemplate::before_document(true, '../'); ?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<?php NAtemplate::head('Sites'); ?>
-	</head>
-	<body>
-		<?php NAtemplate::before_content(); ?>
-			<h1>Sites</h1>
+<?php require_once(__DIR__ . '/../impl/NAtemplate.php'); ?>                                                                            
+<?php NAtemplate::before_content('../', 'Sites', true, ''); ?>
+
+<h1>Sites</h1>
 <?php 
 require_once(__DIR__ . '/../../impl/database/Sites.php');
 
@@ -40,9 +34,10 @@ $sites = Sites::get();
 			</tr>
 		<?php } ?>
 	</table>
-	
+
+	<form>
+		<button formaction="edit-site.php">Create new</button>
+	<form>	
 	<a href="edit-site.php">Create new</a>
 	
-	<?php NAtemplate::after_content(); ?>
-	</body>
-</html>
+<?php NAtemplate::after_content(); ?>

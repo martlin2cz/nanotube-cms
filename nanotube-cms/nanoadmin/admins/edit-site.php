@@ -14,7 +14,7 @@ if ($site_id) {
 	$site = $sites->get_site($site_id);
 	$is_edit = true;
 } else {
-	$site = new Site('unique-id-of-your-site', 'Title of your site', '<p>Text (html) of your site.</p>', null, null, null, null, false);
+	$site = new Site('unique-id-of-your-site', 'Title of your site', '<p>Text (html) of your site.</p>');
 	$is_edit = false;
 }
 
