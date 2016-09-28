@@ -7,6 +7,8 @@ class Config {
 		$this->web_title = $web_title;
 	}
 
+	// getters
+
 	public function get_web_title() {
 		return $this->web_title;
 	}
@@ -27,8 +29,14 @@ class Config {
 		return "his_nano_password";
 	}
 
+	// setters
 
-	//TODO modify
+	public function set_web_title($web_title) {
+		$this->web_title = $web_title;
+	}
+
+
+	// others
 	
 	public function __toString() {
 		return "Web config, web_title=" . $this->web_title;
