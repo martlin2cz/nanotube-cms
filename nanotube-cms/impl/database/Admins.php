@@ -30,6 +30,12 @@ class Admins {
 	public function get_admin($username) {
 		return $this->admins[$username];
 	}
+	
+	public function install() {
+	 	//TODO
+		echo "TODO";
+		return true;
+	}
 
 	public function __toString() {
 		return "Admins: " . count($this->admins);

@@ -32,7 +32,8 @@ class Sites {
 				"Plugin Hello World: <?php plugin_HelloWorld('Ahoj, světe!'); ?>. Hezké, ne? A menu? <?php plugin_Menu('?id=\$site-id'); ?> A co <?php plugin_Fortune(); ?>?",
 				'na', time(), 'na', time(), true)
 
-		);
+			);
+		//$this->sites = null;
 	}
 
 	public function all_sites() {
@@ -58,6 +59,13 @@ class Sites {
 	public function create_site($site) {
 		echo "Creating site";
 	}
+
+	public function install() {
+		//TODO
+		echo "TODO";
+		return true;
+	}
+
 	public function __toString() {
 		return "Sites: " . count($this->sites);
 	}

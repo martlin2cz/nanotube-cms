@@ -8,3 +8,46 @@ main {
 	padding: 1%;
 	margin: 1%;
 }
+
+/*******************************************************************/
+/* FORMS */
+fieldset label {
+	clear: both;
+
+	display: block;
+	float: left;
+	
+	min-width: 15%;
+}
+
+fieldset input {
+	display: block;
+	float: left;
+
+	min-width: 10%;
+}
+
+.buttons-panel {
+	clear: both;
+	display: block;
+	padding-top: 1eM;
+}
+
+.buttons-panel input {
+	display: inline;
+	height: 3eM;
+}
+
+
+/********************************************************************/
+.success {
+	clear: both;
+	color: #004000;
+	background-color: #F0FFF0;
+}
+.failure {
+	clear: both;
+	color: #40000;
+	background-color: #FFF0F0;
+}
+

@@ -16,6 +16,12 @@ class Plugins {
 		}
 	}
 
+	public function install() {
+		//TODO
+		echo "TODO";
+		return true;
+	}
+
 	static public function start_using_plugins($apc) {
 		self::$current_apc = $apc;
 	}

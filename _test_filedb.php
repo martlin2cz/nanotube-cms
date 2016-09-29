@@ -9,7 +9,11 @@ error_reporting(E_ALL);
 require_once(__DIR__ . '/nanotube-cms/impl/database/FileDatabase.php');
 
 // init
-$db = new FileDatabase('foo.php');
+$db = new FileDatabase('config/foo.php');
+
+// create
+ $db->create(); 
+echo "created? \n";
 
 // save
  $db->save('<?php global $bar; $bar = 42; ?>'); 
@@ -39,11 +43,8 @@ global $config;
 echo "loaded #3? $config\n";
 
 
-
-
-
 // remove
-//$db->remove();
+$db->remove();
 echo "removed? \n";
 
 

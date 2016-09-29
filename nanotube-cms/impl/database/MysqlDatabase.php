@@ -19,7 +19,7 @@ class MysqlDatabase {
 			$this->config->get_mysql_database());
 
 		if ($this->connection->connect_errno) {
-			echo "Connecting ERROR: " . $this->connection->connect_error;
+			error_log("Connecting ERROR: " . $this->connection->connect_error);
 			return false;
 		}
 
@@ -28,7 +28,7 @@ class MysqlDatabase {
 
 	private function check_error() {
 		if ($this->connection->errno) {
-			echo "Query ERROR: " . $this->connection->error;
+			error_log("Query ERROR: " . $this->connection->error);
 			
 			return false;
 		} else {
@@ -37,7 +37,7 @@ class MysqlDatabase {
 	}
 
 	private function invoke_sql($sql) {
-		echo "[$sql]\n";
+		echo "[$sql]\n";//XXX debug!
 		return $this->connection->query($sql); 
 	}
 
@@ -91,6 +91,15 @@ class MysqlDatabase {
 		return $this->result_to_array($result);
 	}
 
+	public function test() {
+		$this->connect();
+
+		$sql = "SELECT 'It works!'";
+		$result = $this->invoke_sql($sql);
+
+		$this->check_error();
+		return $result;
+	}
 
 	private function result_to_array($result) {
 		$array = Array();
@@ -103,10 +112,5 @@ class MysqlDatabase {
 		return $array;
 	}
  
-
-//TODO
-
-
-
 
 }

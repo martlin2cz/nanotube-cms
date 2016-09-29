@@ -47,9 +47,11 @@ class NAtemplate {
 				</nav>
 				<?php } ?>
 			
-				<section>
-					<?php require_once(__DIR__ . '/../components/login-panel.php'); ?>
-				<section>
+				<?php if (!is_null($require_login)) { ?>
+					<section>
+						<?php require_once(__DIR__ . '/../components/login-panel.php'); ?>
+					</section>
+				<?php } ?>
 			</header>	
 		<main>
 	<?php }
