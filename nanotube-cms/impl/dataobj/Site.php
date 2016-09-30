@@ -9,8 +9,9 @@ class Site {
 	private $last_modified_by;
 	private $last_modified_at;
 	private $visible;
+	private $order_num;
 
-	public function __construct($id, $title, $content, $created_by, $created_at, $last_modified_by, $last_modified_at, $visible) {
+	public function __construct($id, $title, $content, $created_by, $created_at, $last_modified_by, $last_modified_at, $visible, $order_num) {
 		$this->id = $id;
 		$this->title = $title;
 		$this->content = $content;
@@ -19,6 +20,8 @@ class Site {
 		$this->last_modified_by = $last_modified_by;
 		$this->last_modified_at = $last_modified_at;
 		$this->visible = $visible;
+		$this->order_num = $order_num;
+
 	}
 
 	// getters
@@ -54,6 +57,11 @@ class Site {
 	public function is_visible() {
 		return $this->visible;
 	}
+
+	public function get_order_num() {
+		return $this->order_num;
+	}
+	
 	// setters
 
 	public function set_id($id) {
@@ -87,6 +95,11 @@ class Site {
 	public function set_visible($visible) {
 		$this->visible = $visible;
 	}
+	
+	public function set_order_num($order_num) {
+		$this->order_num = $order_num;
+	}
+
 
 	// others
 

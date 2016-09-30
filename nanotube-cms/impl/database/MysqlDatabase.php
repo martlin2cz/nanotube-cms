@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__ . '/../dataobj/Config.php');
+define("MYSQL_DATE_FORMAT", 'Y-m-d H:i:s');
 
 class MysqlDatabase {
 	
@@ -88,7 +89,11 @@ class MysqlDatabase {
 
 		$result = $this->invoke_sql($sql);
 		$this->check_error();
-		return $this->result_to_array($result);
+		if ($result) {
+			return $this->result_to_array($result);
+		} else {
+			return null;
+		}
 	}
 
 	public function test() {
@@ -111,6 +116,10 @@ class MysqlDatabase {
 		$result->free();
 		return $array;
 	}
- 
+
+	public function escape_string($string) {
+		$this->connect();
+		return $this->connection->real_escape_string($string);
+	}	
 
 }
