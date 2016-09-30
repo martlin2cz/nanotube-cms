@@ -33,7 +33,7 @@ class Sites {
 				'na', time(), 'na', time(), true)
 
 			);
-		//$this->sites = null;
+	$this->sites = null;
 	}
 
 	public function all_sites() {
@@ -63,7 +63,7 @@ class Sites {
 	public function install() {
 		//TODO
 		echo "TODO";
-		return true;
+		return false;//TODO FIXME XXX 
 	}
 
 	public function __toString() {

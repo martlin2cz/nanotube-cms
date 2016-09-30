@@ -33,36 +33,31 @@ function edit_or_new_text($edit_text, $new_text) {
 
 ?>
 <?php NAtemplate::before_content('../', 'Create/Update site', true, ''); ?>
-			<h1><?= edit_or_new_text('Edit', 'Create') ?> site</h1>
-
 			<form action="actions/update-site.php" method="POST">
-				<input type="hidden" name="current-site-id" value="<?= edit_or_new_text($site->get_id(), '') ?>">
+				<fieldset>
+					<legend><h1><?= edit_or_new_text('Edit', 'Create') ?> site</h1></legend>
+					<input type="hidden" name="current-site-id" value="<?= edit_or_new_text($site->get_id(), '') ?>">
 
-				<label>Site id</label>
-				<input type="text" name="site-id" value="<?= $site->get_id() ?>">
-				<?php if (is_edit()) { ?>
-				<span>note: changing the site id will not cause to update links to this site in other sites!</span>
-				<?php } ?>
+					<label>Site id</label>
+					<input type="text" name="site-id" value="<?= $site->get_id() ?>">
+					<?php if (is_edit()) { ?>
+					<span>note: changing the site id will not cause to update links to this site in other sites!</span>
+					<?php } ?>
 
-	<br>
-
-				<label>Site title</label>
-				<input type="text" name="title" value="<?= $site->get_title() ?>">
-
-	<br>
-
-				<label>Text</label>
-				<textarea name="content"><?= $site->get_content() ?></textarea>
-
-	<br>
-
-				<input type="checkbox" checked="<?= $site->is_visible() ?>">
-				<label>Visible</label>
-
-
-	<br>
-
-				<input type="submit" value="<?= edit_or_new_text('Update', 'Create') ?>">
+					<label>Site title</label>
+					<input type="text" name="title" value="<?= $site->get_title() ?>">
+	
+					<label>Visible</label>
+					<input type="checkbox" checked="<?= $site->is_visible() ?>">
+					
+					<label>Text</label>
+					<textarea name="content"><?= $site->get_content() ?></textarea>
+				
+					<div class="buttons-panel">
+						<input type="submit" value="<?= edit_or_new_text('Update', 'Create') ?>">
+						<input type="reset" value="Revert">
+					</div>
+				</fieldset>
 			</form>		
 
 <?php NAtemplate::after_content(); ?>

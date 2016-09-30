@@ -11,6 +11,12 @@ main {
 
 /*******************************************************************/
 /* FORMS */
+
+fieldset {
+	display: block;
+	padding: 1eM 2%;
+}
+
 fieldset label {
 	clear: both;
 
@@ -18,6 +24,7 @@ fieldset label {
 	float: left;
 	
 	min-width: 15%;
+	margin: 0.5eM 2%;
 }
 
 fieldset input {
@@ -25,12 +32,28 @@ fieldset input {
 	float: left;
 
 	min-width: 10%;
+	margin: 0 2%;
+}
+
+fieldset input[type=checkbox] {
+	float: left;
+	display: block;
+	min-width: 1eM;
+}
+
+fieldset textarea {
+	clear: both;
+	display: block;
+	width: 80%;
+	min-height: 20eM;
+	margin: 1em 2%;
 }
 
 .buttons-panel {
 	clear: both;
 	display: block;
-	padding-top: 1eM;
+	height: 3eM;
+	padding: 1eM 0;
 }
 
 .buttons-panel input {
@@ -40,14 +63,24 @@ fieldset input {
 
 
 /********************************************************************/
-.success {
+/* Success / Error panels */
+.panel {
 	clear: both;
+	padding: 1eM 2%;
+	margin: 0.5eM 0%;
+}
+
+.success {
 	color: #004000;
 	background-color: #F0FFF0;
 }
 .failure {
-	clear: both;
-	color: #40000;
-	background-color: #FFF0F0;
+	color: #804000;
+	background-color: #FFF8F0;
+}
+
+.critical-error {
+	color: #800000;
+	background-color: #FFE0E0;
 }
 

@@ -72,6 +72,20 @@ class NAtemplate {
 
 <?php }
  
+	static public function do_error($error) { ?>
+		<article class="panel <?= (($error->is_critical()) ? 'critical-error' : 'failure') ?>">
+			<h2><?= $error->get_title() ?></h2>
+			<p><?= $error->get_message() ?></p>
+		</article>	
+	<?php }
+
+	static public function do_success($text) { ?>
+		<article class="panel success">
+			<h2>Okay</h2>
+			<p><?= $text ?></p>
+		</article>	
+	<?php }
+
 }
 
 ?>

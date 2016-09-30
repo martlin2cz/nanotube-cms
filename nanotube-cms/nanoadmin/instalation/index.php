@@ -1,7 +1,6 @@
 <?php require_once(__DIR__ . '/../impl/NAtemplate.php'); ?>
 <?php NAtemplate::before_content('../', 'Instalation', true, ''); ?>
 <?php
-
 require_once(__DIR__ . '/../../impl/database/Configs.php');
 require_once(__DIR__ . '/../../impl/database/MysqlDatabase.php');
 require_once(__DIR__ . '/../../impl/database/Sites.php');
@@ -61,10 +60,7 @@ if ($is_part2_ok && $is_db_test_ok) {
 	</div>
 
 	<?php if ($is_part1_ok) { ?>
-	<div class="success">
-		<h3>Okay</h3>
-		<p>Config file created and saved. You can still modify the data above and/or continue.</p>
-	</div>
+		<?php NAtemplate::do_success("<p>Config file created and saved. You can still modify the data above and/or continue.</p>"); ?>	
 	<?php } ?>
 
 </fieldset>
@@ -92,23 +88,13 @@ if ($is_part2_ok && $is_db_test_ok) {
 	</div>
 
 	<?php if ($is_part2_ok) { ?>
-	<div class="success">
-		<h3>Okay</h3>
-		<p>Database config saved. You can still modify the data above and/or continue.</p>
-	</div>
+		<?php NAtemplate::do_success("<p>Database config saved. You can still modify the data above and/or continue.</p>"); ?>	
 		<?php if ($is_db_test_ok) { ?>
-		<div class="success">
-			<h3>Okay</h3>
-			<p>Connected to database! Now you can continue.</p>
-		</div>
+			<?php NAtemplate::do_success("<p>Connected to database! Now you can continue.</p>"); ?>	
 		<?php } else { ?>
-		<div class="failure">
-			<h3>Error</h3>
-			<p>Cannot connect to the database! Make sure you entered corect configuration and have sufficient permissions. Try direct connect (using <code>mysql</code>).</p>
-		</div>
+			<?php NAtemplate::do_error(new Error("Error", "<p>Cannot connect to the database! Make sure you entered corect configuration and have sufficient permissions. Try direct connect (using <code>mysql</code>).</p>", true)); ?>	
 		<?php } ?>	
 	<?php } ?>
-
 </fieldset>
 </form>
 
@@ -121,15 +107,9 @@ if ($is_part2_ok && $is_db_test_ok) {
 	</div>
 
 	<?php if ($is_part3_ok) { ?>
-	<div class="success">
-		<h3>Okay</h3>
-		<p>Database created! You can now start to use your web!</p>
-	</div>
+		<?php NAtemplate::do_success("<p>Config file created and saved. You can still modify the data above and/or continue.</p>"); ?>	
 	<?php } else { ?>
-	<div class="failure">
-		<h3>Error</h3>
-		<p>Creation of database failed.</p>
-	</div>
+		<?php NAtemplate::do_error(new Error("Error", "<p>Database creation somehow failed. I'm sorry..</p>", true)); ?>	
 	<?php } ?>	
 </fieldset>
 </form>

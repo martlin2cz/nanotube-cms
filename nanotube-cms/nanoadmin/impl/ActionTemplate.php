@@ -35,17 +35,14 @@ class ActionTemplate {
 
 		<h1>An error(s)	occured</h1>
 		<?php foreach ($errors as $error) { ?>
-			<article class="<?= ($error->is_critical() ? 'error' : 'critical-error') ?> ">
-				<h2><?= $error->get_title() ?></h2>
-				<p><?= $error->get_message() ?></p>
-			</article>	
+			<?php NAtemplate::do_error($error); ?>
 		<?php } ?>
 		<button onclick="history.back()">Back</button>
 
 		<?php NAtemplate::after_content(); ?>
 		<?php die("<!-- That's all folks -->"); ?>
 		<?php }
-
+		
 	static public function success($redirect_to) {
 		Tools::redirect_to_relative($redirect_to);
 		echo "OK";
