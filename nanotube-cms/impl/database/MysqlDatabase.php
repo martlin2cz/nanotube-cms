@@ -121,5 +121,14 @@ class MysqlDatabase {
 		$this->connect();
 		return $this->connection->real_escape_string($string);
 	}	
+	
+	public function bool_to_sql($bool) {
+		if ($bool) {
+			return "1";
+		} else {
+			return "0";
+		}
+	}	
+
 
 }

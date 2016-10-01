@@ -4,33 +4,51 @@
 <h1>Sites</h1>
 <?php 
 require_once(__DIR__ . '/../../impl/database/Sites.php');
+require_once(__DIR__ . '/../impl/WebTools.php');
 
 $sites = Sites::get();
 ?>
 
 	<table>
 		<tr>
-			<th>order</th>
+			<th colspan="2">order</th>
 			<th>ID</th>
 			<th>title</th>
-			<th colspan="2">created</th>
-			<th colspan="2">last modified</th>
-			<th colspan="3"></th>
+			<th>created</th>
+			<th>last modified</th>
+			<th colspan="2"></th>
 		</tr>
 		<?php foreach ($sites->all_sites() as $site) { ?>
-			<tr>
-				<td>(order number)</td>
+		<tr class="<?= ($site->is_visible() ? '' : 'inactive') ?>">
+				<td>
+					<a href="actions/change-order.php?site-id=<?= $site->get_id() ?>&move=up" class="change-order-link">&uarr;</a>
+					<a href="actions/change-order.php?site-id=<?= $site->get_id() ?>&move=down" class="change-order-link">&darr;</a>
+				</td>
+	
+				<td><?= $site->get_order_num() ?></td>
 				<td><?= $site->get_id() ?></td>
 				<td><?= $site->get_title() ?></td>
-				<td><?= $site->get_created_by() ?></td>
-				<td><?= $site->get_created_at() ?></td>
-				<td><?= $site->get_last_modified_by() ?></td>
-				<td><?= $site->get_last_modified_at() ?></td>
+				<td>
+					<div>by <?= $site->get_created_by() ?></div>
+					<div>at <?= WebTools::format_date($site->get_created_at()) ?><div>
+				</td>
+				<td>
+					<div>by <?= $site->get_last_modified_by() ?></div>
+					<div>at <?= WebTools::format_date($site->get_last_modified_at()) ?><div>
+				</td>
 
-				<td><a href="TODOOOO">show</a></td>
-				<td><a href="edit-site.php?site-id=<?= $site->get_id() ?>">edit</a></td>
-				<td><a href="delete-site.php?site-id=<?= $site->get_id() ?>">show/hide</a></td>
-	
+				<td>
+					<form action="edit-site.php" method="GET" class="inline">
+						<input type="hidden" name="site-id" value="<?= $site->get_id() ?>">
+						<input type="submit" value="Edit" />
+					</form>
+					<form action="actions/toggle-visibility.php" method="GET" class="inline">
+						<input type="hidden" name="site-id" value="<?= $site->get_id() ?>">
+						<input type="submit" value="<?= ($site->is_visible() ? 'Hide' : 'Show') ?>">
+					</form>
+				</td>
+				<td><a href="<?= WebTools::make_link_to($site, "../../../") ?>" target="_blank">Open</a></td>
+
 			</tr>
 		<?php } ?>
 	</table>
@@ -38,6 +56,5 @@ $sites = Sites::get();
 	<form>
 		<button formaction="edit-site.php">Create new</button>
 	<form>	
-	<a href="edit-site.php">Create new</a>
 	
 <?php NAtemplate::after_content(); ?>

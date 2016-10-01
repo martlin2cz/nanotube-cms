@@ -35,12 +35,13 @@ class LogingIn {
 	}
 
 	public function logged_user() {
-		return $_SESSION[LOGGED_USER_SESSION_VAR_NAME];
+		//return $_SESSION[LOGGED_USER_SESSION_VAR_NAME];//TODO
+		return Admins::get()->get_admin($_SESSION[LOGGED_USER_SESSION_VAR_NAME])->get_username();
 	}
 	/// log in and out /////////////////////////////////////////////
 
 	public function log_in() {
-		$_SESSION[LOGGED_USER_SESSION_VAR_NAME] = rand();
+		$_SESSION[LOGGED_USER_SESSION_VAR_NAME] = NANOADMIN_USERNAME;
 	}
 
 

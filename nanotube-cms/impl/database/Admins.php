@@ -72,7 +72,7 @@ class Admins {
 			. "full_name='" . $db->escape_string($admin->get_full_name()) . "', "
 			. "password='" . $admin->get_password() . "', "
 			. "password_salt='" . $admin->get_password_salt() . "', "
-			. "enabled=" . $admin->get_enabled() . ", "
+			. "enabled=" . $db->bool_to_sql($admin->get_enabled()) . ", "
 			. "registered_at='" . date(MYSQL_DATE_FORMAT, $admin->get_registered_at()) . "', "
 			. "last_login_at='" . date(MYSQL_DATE_FORMAT, $admin->get_last_login_at()) . "'",
 			"username = '$username'");
@@ -89,7 +89,7 @@ class Admins {
 			. "'". $db->escape_string($admin->get_full_name()) . "', "
 			. "'". $admin->get_password() . "', "
 			. "'". $admin->get_password_salt() . "', "
-			. $admin->is_enabled() . ", "
+			. $db->bool_to_sql($admin->is_enabled()) . ", "
 			. "'" . date( MYSQL_DATE_FORMAT, $admin->get_registered_at()) . "', "
 			. "'" . date( MYSQL_DATE_FORMAT, $admin->get_last_login_at()) . "'"
 			. ")");

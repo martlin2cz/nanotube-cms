@@ -1,3 +1,5 @@
+/*******************************************************************/
+/* base page styles */
 header {
 	background-color: rgb(255, 230, 200);
 	padding: 2%;
@@ -8,6 +10,39 @@ main {
 	padding: 1%;
 	margin: 1%;
 }
+
+a {
+	text-decoration: none;
+}
+/*******************************************************************/
+/* common classes */
+
+.inline {
+	display: inline;
+}
+
+
+/*******************************************************************/
+/* tables */
+table {
+	border-collapse: collapse;
+/*	border: 1px solid gray;*/
+	width: 100%;
+	margin: 1em 0;
+}
+
+table td, th {
+	border: 1px solid gray;
+	padding: 1eM 0.5%;
+}
+
+table th {
+		background-color: lightgray;
+}
+
+table td {
+}
+
 
 /*******************************************************************/
 /* FORMS */
@@ -61,6 +96,12 @@ fieldset textarea {
 	height: 3eM;
 }
 
+fieldset span.note {
+	display: block;
+	float: left;
+	font-style: italic;
+}
+
 
 /********************************************************************/
 /* Success / Error panels */
@@ -84,3 +125,13 @@ fieldset textarea {
 	background-color: #FFE0E0;
 }
 
+/********************************************************************/
+/* Custom styles */
+table tr.inactive {
+	background-color: gray;
+}
+
+a.change-order-link {
+	font-size: 80%;	
+	font-weight: bold;
+}

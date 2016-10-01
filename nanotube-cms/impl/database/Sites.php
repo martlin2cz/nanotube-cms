@@ -60,6 +60,15 @@ class Sites {
 		}
 	}
 
+	public function get_site_with_order($order_num) {
+		foreach ($this->sites as $site) {
+			if ($site->get_order_num() == $order_num) {
+				return $site;
+			}
+		}
+		return null;
+	}
+
 	public function error_404_site() {
 		return new Site('404', "Not found", "<p>Requested site not found.</p>");
 	}
@@ -105,7 +114,7 @@ class Sites {
 			. "created_at='" . date(MYSQL_DATE_FORMAT, $site->get_created_at()) . "', "
 			. "last_modified_by='" . $site->get_last_modified_by() . "', "
 			. "last_modified_at='" . date(MYSQL_DATE_FORMAT, $site->get_last_modified_at()) . "', "
-			. "visible=" . $site->is_visible() . ", "
+			. "visible=" . $db->bool_to_sql($site->is_visible()) . ", "
 			. "order_num=" . $site->get_order_num(),
 			"id = '$current_id'");
 	}
@@ -124,7 +133,7 @@ class Sites {
 			. "'". date(MYSQL_DATE_FORMAT, $site->get_created_at()) . "', "
 			. "'". $site->get_last_modified_by() . "', "
 			. "'". date(MYSQL_DATE_FORMAT, $site->get_last_modified_at()) . "', "
-			. $site->is_visible() . ", "
+			. $db->bool_to_sql($site->is_visible()) . ", "
 			. $site->get_order_num()
 			. ")");
 	}
