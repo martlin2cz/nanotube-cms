@@ -7,7 +7,8 @@ require_once(__DIR__ . '/../../impl/LogingIn.php');
 require_once(__DIR__ . '/../../impl/Tools.php');
 
 //TODO check password !!!!
-LogingIn::get()->log_in();
+$admin = new Admin("fooooo");	//TODO ooo FIXME eee 
+LogingIn::get()->log_in($admin);
 
 Tools::redirect_to_relative('../');
 

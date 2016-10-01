@@ -78,9 +78,20 @@ class Tools {
 	}
 
 	static public function redirect_to_relative($relative) {
-		$absolute = dirname($_SERVER['REQUEST_URI']) . '/' . $relative;
-//		echo "--- REDIRECTING TO " . $_SERVER['REQUEST_URI'] . " 'S " . $relative . " ---> $absolute ---";
-				header('Location: ' . $absolute);
+		$url = $_SERVER['REQUEST_URI'];
+		if (self::ends_with($url, ".php") || self::ends_with($url, ".html")) {
+			$dir = dirname($url);
+		} else {
+			$dir = preg_replace('/\\/$/', '', $url);
+		}	
+		
+		$absolute = $dir . '/' . $relative;
+		header('Location: ' . $absolute);
+		die("Hastala vista, baby!");
+	}
+
+	static private function ends_with($string, $ending) {
+		return substr($string, - strlen($ending)) == $ending;
 	}
 
 }

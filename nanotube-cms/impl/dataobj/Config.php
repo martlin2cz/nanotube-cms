@@ -4,10 +4,15 @@ class Config {
 	private $web_title;
 	private $web_description;
 	private $web_keywords;
+	
 	private $mysql_server;
 	private $mysql_database;
 	private $mysql_user;
 	private $mysql_password;
+
+	private $na_password;
+	private $na_password_salt;
+	private $links_format;
 
 	public function __construct() {
 	}

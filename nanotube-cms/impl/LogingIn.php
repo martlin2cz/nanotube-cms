@@ -1,6 +1,8 @@
 <?php
 
 require_once(__DIR__. '/../impl/database/Admins.php');
+require_once(__DIR__. '/Passwording.php');
+
 
 define('LOGGED_USER_SESSION_VAR_NAME', 'nta-logged-user');
 
@@ -9,11 +11,13 @@ class LogingIn {
 	private static $instance;
 
 	private $admins;
+	private $passwording;
 
 	/// initialization of singleton /////////////////////////////////////////////
 	protected function __construct() {
 		session_start();
 		$this->admins = Admins::get();
+		$this->passwording = new Passwording();
 	}
 
 	static public function initialize_instance() {
@@ -35,13 +39,16 @@ class LogingIn {
 	}
 
 	public function logged_user() {
-		//return $_SESSION[LOGGED_USER_SESSION_VAR_NAME];//TODO
-		return Admins::get()->get_admin($_SESSION[LOGGED_USER_SESSION_VAR_NAME])->get_username();
+		$username = $_SESSION[LOGGED_USER_SESSION_VAR_NAME];
+		$admin = $this->admins->get_admin($username);
+		return $admin->get_username();
 	}
 	/// log in and out /////////////////////////////////////////////
 
-	public function log_in() {
-		$_SESSION[LOGGED_USER_SESSION_VAR_NAME] = NANOADMIN_USERNAME;
+	public function log_in($user) {
+		//TODO is_login_valid
+		$username = $user->get_username();
+		$_SESSION[LOGGED_USER_SESSION_VAR_NAME] = $username;
 	}
 
 
@@ -53,9 +60,18 @@ class LogingIn {
 
 	/// authorisation /////////////////////////////////////////////
 
-	public function is_login_valid($username, $password) {
-		//TODO
-		return true;
+	public function check_credentials($username, $password) {
+		$admin = $this->admins->get_admin($username);
+		if ($admin == null) {
+			return null;
+		}
+		
+		$match = $this->passwording->matches($password, $admin->get_password(), $admin->get_password_salt());
+		if (!$match) {
+			return null;
+		}
+
+		return $admin;
 	}	
 }
 
