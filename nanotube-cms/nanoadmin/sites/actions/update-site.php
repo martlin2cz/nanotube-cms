@@ -55,9 +55,13 @@ $site->set_visible($visible);
  
 // save changed
 if ($is_update) {
-	$sites->update_site($current_site_id, $site);
+	$succ = $sites->update_site($current_site_id, $site);
 } else {
-	$sites->create_site($site);
+	$succ = $sites->create_site($site);
+}
+
+if (!$succ) {
+	Errors::add("Database error", "Cannot save data.", true);
 }
 
 ActionTemplate::check_errors();

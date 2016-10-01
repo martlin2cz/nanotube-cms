@@ -2,7 +2,8 @@
 
 require_once(__DIR__ . '/../../impl/Errors.php');
 
-define("IDENTIFICATOR_REGEX", '/[a-zA-Z0-9\\-_\\.]+/');
+define("IDENTIFICATOR_REGEX", '/[a-zA-Z0-9\\-\\:_\\.]+/');
+define("PASSWORD_REGEX", '/[a-zA-Z0-9\\-\\!\\?_\\.]+/');
 
 class WebTools {
 
@@ -16,23 +17,29 @@ class WebTools {
 
 	static public function require_posted_id($key_name, $allow_empty) {
 		$value = self::require_value($_POST, $key_name, false);
-		return self::require_id($value, $allow_empty);
+		return self::require_id($key_name, $value, $allow_empty);
 	}
 
 
 	static public function require_posted_string($key_name, $allow_empty) {
 		$value = self::require_value($_POST, $key_name, false);
-		return self::require_string($value, $allow_empty);
+		return self::require_string($key_name, $value, $allow_empty);
 	}
+
+	static public function require_posted_password($key_name, $allow_empty) {
+		$value = self::require_value($_POST, $key_name, false);
+		return self::require_password($key_name, $value, $allow_empty);
+	}
+
 
 	static public function require_getted_id($key_name, $allow_empty) {
 		$value = self::require_value($_GET, $key_name, false);
-		return self::require_id($value, $allow_empty);
+		return self::require_id($key_name, $value, $allow_empty);
 	}
 
 	static public function require_getted_string($key_name, $allow_empty) {
 		$value = self::require_value($_GET, $key_name, false);
-		return self::require_string($value, $allow_empty);
+		return self::require_string($key_name, $value, $allow_empty);
 	}
 
 	static public function require_posted_bool($key_name) {
@@ -52,7 +59,7 @@ class WebTools {
 	}
 
 
-	static private function require_id($value, $allow_empty) {
+	static private function require_id($key_name, $value, $allow_empty) {
 		if ($allow_empty && $value == '') {
 			return null;
 		}
@@ -66,7 +73,7 @@ class WebTools {
 		return $value;
 	}
 
-	static private function require_string($value, $allow_empty) {
+	static private function require_string($key_name, $value, $allow_empty) {
 		if (!$allow_empty && $value == '') {
 			Errors::add("Params error", "Param $key_name must be (nonepty) string", false);
 			return null;
@@ -74,5 +81,22 @@ class WebTools {
 
 		return $value;
 	}
+
+	static private function require_password($key_name, $value, $allow_empty) {
+		if ($allow_empty && $value == '') {
+			return null;
+		}
+
+		$match = preg_match(PASSWORD_REGEX, $value);
+		$long = strlen($value) > 30;
+		$short = strlen($value) < 5;
+		if (!$match || $long || $short) {
+			Errors::add("Params error", "Password has to have from 5 to 30 chars and cannot contain special characters.", false);
+			return null;
+		}
+
+		return $value;
+	}
+
 
 }

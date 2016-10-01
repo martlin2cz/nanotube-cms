@@ -38,11 +38,11 @@ $sites = Sites::get();
 				</td>
 
 				<td>
-					<form action="edit-site.php" method="GET" class="inline">
+					<form action="edit-site.php" method="GET">
 						<input type="hidden" name="site-id" value="<?= $site->get_id() ?>">
 						<input type="submit" value="Edit" />
 					</form>
-					<form action="actions/toggle-visibility.php" method="GET" class="inline">
+					<form action="actions/toggle-visibility.php" method="GET">
 						<input type="hidden" name="site-id" value="<?= $site->get_id() ?>">
 						<input type="submit" value="<?= ($site->is_visible() ? 'Hide' : 'Show') ?>">
 					</form>

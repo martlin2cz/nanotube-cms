@@ -78,16 +78,17 @@ class Tools {
 	}
 
 	static public function redirect_to_relative($relative) {
-		$url = $_SERVER['REQUEST_URI'];
+		$url = $_SERVER['PHP_SELF'];
 		if (self::ends_with($url, ".php") || self::ends_with($url, ".html")) {
 			$dir = dirname($url);
 		} else {
 			$dir = preg_replace('/\\/$/', '', $url);
 		}	
-		
+		//echo "--" . $_SERVER['PHP_SELF'] . "--";
+
 		$absolute = $dir . '/' . $relative;
 		header('Location: ' . $absolute);
-		die("Hastala vista, baby!");
+		die("\nHastala vista, baby!");
 	}
 
 	static private function ends_with($string, $ending) {
