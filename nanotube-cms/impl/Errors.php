@@ -38,7 +38,7 @@ class Errors {
 	}
 
 	static public function clear_errors() {
-		self::$errors[] = Array();
+		self::$errors = Array();
 	}
 
 

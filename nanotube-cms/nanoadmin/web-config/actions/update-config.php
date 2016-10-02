@@ -52,7 +52,7 @@ if (!$succ) {
 }
 
 ActionTemplate::check_errors();
-//ActionTemplate::success("../");
+ActionTemplate::success("../");
 
 ?>
 

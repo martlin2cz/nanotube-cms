@@ -1,4 +1,5 @@
 <?php require_once(__DIR__ . '/../impl/NAtemplate.php'); ?>                                                                            
+<?php NAtemplate::before_content('../', 'Create/Update site', true, ''); ?>
 <?php
 
 require_once(__DIR__ . '/../../impl/database/Sites.php');
@@ -11,6 +12,7 @@ if (isset($_GET) && isset($_GET['site-id'])) {
 
 if ($site_id) {
 	$sites = Sites::get();
+	NAtemplate::check_errors();
 	$site = $sites->get_site($site_id);
 	$is_edit = true;
 } else {
@@ -32,7 +34,6 @@ function edit_or_new_text($edit_text, $new_text) {
 }
 
 ?>
-<?php NAtemplate::before_content('../', 'Create/Update site', true, ''); ?>
 			<form action="actions/update-site.php" method="POST">
 				<fieldset>
 					<legend><h1><?= edit_or_new_text('Edit', 'Create') ?> site</h1></legend>

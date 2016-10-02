@@ -32,9 +32,11 @@ if ($is_part2_ok && $is_db_test_ok) {
 	$is_part3_ok = 
 		Admins::get()->all_admins() && 
 		Sites::get()->all_sites();
+} else {
+	$is_part3_ok = null;
 }
 
-
+Errors::clear_errors();	//yeah, here are just annoying
 ?>
 
 <h1>Instalation of nanotube-cms</h1>
@@ -106,11 +108,11 @@ if ($is_part2_ok && $is_db_test_ok) {
 	<input type="submit" value="Create database" <?= ($is_part1_ok && $is_part2_ok) ? '' : 'disabled="true"' ?>>
 	</div>
 
-	<?php if ($is_part3_ok) { ?>
-		<?php NAtemplate::do_success("<p>Config file created and saved. You can still modify the data above and/or continue.</p>"); ?>	
-	<?php } else { ?>
+	<?php if ($is_part3_ok === true) { ?>
+		<?php NAtemplate::do_success("<p>Database seems installed.</p>"); ?>	
+	<?php } else if ($is_part3_ok === false) { ?>
 		<?php NAtemplate::do_error(new Error("Error", "<p>Database creation somehow failed. I'm sorry..</p>", true)); ?>	
-	<?php } ?>	
+	<?php } ?>
 </fieldset>
 </form>
 

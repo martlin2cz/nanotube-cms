@@ -3,8 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once(__DIR__ . '/../../impl/WebTools.php');
 require_once(__DIR__ . '/../../impl/ActionTemplate.php');
+require_once(__DIR__ . '/../../impl/WebTools.php');
 
 require_once(__DIR__ . '/../../../impl/Tools.php');
 require_once(__DIR__ . '/../../../impl/database/Configs.php');
@@ -12,7 +12,6 @@ require_once(__DIR__ . '/../../../impl/database/Configs.php');
 ActionTemplate::before_start("../../", true);
 
 $configs = Configs::get();
-
 
 // check params
 WebTools::require_posted_id('web-title', false);

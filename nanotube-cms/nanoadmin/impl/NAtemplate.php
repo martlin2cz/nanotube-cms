@@ -54,6 +54,7 @@ class NAtemplate {
 				<?php } ?>
 			</header>	
 		<main>
+		<?php /* self::check_errors(); */ ?>
 	<?php }
 
 	static public function after_content() {
@@ -63,6 +64,8 @@ class NAtemplate {
 	}
 
 	static private function put_after_content_html() { ?>
+		<?php /* self::check_errors(); */ ?>
+		<button onclick="history.back()">Back</button>
 		</main>
 		<footer>
 			nanoadmin powered by nanotube-cms.
@@ -71,7 +74,16 @@ class NAtemplate {
 	</html>
 
 <?php }
- 
+
+	static public function check_errors() {
+		if (Errors::is_some_error()) {
+			$errors = Errors::flush_errors();
+			foreach ($errors as $error) {
+				self::do_error($error);
+			}
+		}
+	}
+
 	static public function do_error($error) { ?>
 		<article class="panel <?= (($error->is_critical()) ? 'critical-error' : 'failure') ?>">
 			<h2><?= $error->get_title() ?></h2>

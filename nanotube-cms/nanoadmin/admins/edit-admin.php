@@ -1,4 +1,5 @@
 <?php require_once(__DIR__ . '/../impl/NAtemplate.php'); ?>                                                                            
+<?php NAtemplate::before_content('../', 'Create/Update admin', true, ''); ?>
 <?php
 
 require_once(__DIR__ . '/../../impl/database/Admins.php');
@@ -12,6 +13,7 @@ if (isset($_GET) && isset($_GET['username'])) {
 if ($username) {
 	$admins = Admins::get();
 	$admin = $admins->get_admin($username);
+	NAtemplate::check_errors();
 	$is_edit = true;
 } else {
 	$admin = new Admin('username', 'Full Name', null, null, true, 0, 0);
@@ -32,7 +34,6 @@ function edit_or_new_text($edit_text, $new_text) {
 }
 
 ?>
-<?php NAtemplate::before_content('../', 'Create/Update admin', true, ''); ?>
 			<form action="actions/update-admin.php" method="POST">
 				<fieldset>
 					<legend><h1><?= edit_or_new_text('Update', 'Create') ?> admin</h1></legend>

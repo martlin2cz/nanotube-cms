@@ -1,7 +1,5 @@
 <?php require_once(__DIR__ . '/../impl/NAtemplate.php'); ?>                                                                            
 <?php NAtemplate::before_content('../', 'Admins', true, ''); ?>
-
-<h1>Admins</h1>
 <?php 
 
 require_once(__DIR__ . '/../impl/WebTools.php');
@@ -10,6 +8,7 @@ require_once(__DIR__ . '/../../impl/database/Admins.php');
 $admins = Admins::get();
 ?>
 
+<?php NAtemplate::check_errors(); ?>
 	<table>
 		<tr>
 			<th>user name</th>

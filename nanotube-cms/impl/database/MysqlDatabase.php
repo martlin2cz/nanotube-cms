@@ -1,6 +1,8 @@
 <?php
 
 require_once(__DIR__ . '/../dataobj/Config.php');
+require_once(__DIR__ . '/../Errors.php');
+
 define("MYSQL_DATE_FORMAT", 'Y-m-d H:i:s');
 
 class MysqlDatabase {
@@ -19,18 +21,23 @@ class MysqlDatabase {
 			$this->config->get_mysql_password(),
 			$this->config->get_mysql_database());
 
-		if ($this->connection->connect_errno) {
-			error_log("Connecting ERROR: " . $this->connection->connect_error);
-			return false;
-		}
-
-		return true;
+		return $this->check_connection_error();
 	}
 
-	private function check_error() {
+	private function check_connection_error() {
+		if ($this->connection->connect_errno) {
+			error_log("Connecting ERROR: " . $this->connection->connect_error);
+			Errors::add("Database error", "Could not connect to database. MySQL error code:" . $this->connection->connect_errno, true);
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	private function check_error($operation) {
 		if ($this->connection->errno) {
 			error_log("Query ERROR: " . $this->connection->error);
-			
+			Errors::add("Database error", "Could not perform $operation. MySQL error code:" . $this->connection->connect_errno, true);
 			return false;
 		} else {
 			return true;
@@ -47,7 +54,7 @@ class MysqlDatabase {
 		$sql = "CREATE TABLE $name $spec";
 
 		$this->invoke_sql($sql);
-		return $this->check_error();
+		return $this->check_error("creating of table $name");
 	}
 
 	public function drop_table($name) {
@@ -55,7 +62,7 @@ class MysqlDatabase {
 		$sql = "DROP TABLE $name";
 
 		$this->invoke_sql($sql);
-		return $this->check_error();
+		return $this->check_error("deleting of table $name");
 	}
 
 	public function insert($table, $columns, $values) {
@@ -63,7 +70,7 @@ class MysqlDatabase {
 		$sql = "INSERT INTO $table $columns VALUES $values";
 
 		$this->invoke_sql($sql);
-		return $this->check_error();
+		return $this->check_error("data insert into table $table");
 	}
 	
 	public function update($table, $sets, $where) {
@@ -74,7 +81,7 @@ class MysqlDatabase {
 		}
 
 		$this->invoke_sql($sql);
-		return $this->check_error();
+		return $this->check_error("data update in table $table");
 	}
 
 	public function select($table, $columns, $where, $order) {
@@ -88,7 +95,7 @@ class MysqlDatabase {
 		}
 
 		$result = $this->invoke_sql($sql);
-		$this->check_error();
+		$this->check_error("loading data from table $table");
 		if ($result) {
 			return $this->result_to_array($result);
 		} else {
@@ -102,7 +109,7 @@ class MysqlDatabase {
 		$sql = "SELECT 'It works!'";
 		$result = $this->invoke_sql($sql);
 
-		$this->check_error();
+		$this->check_error("testing of database");
 		return $result;
 	}
 

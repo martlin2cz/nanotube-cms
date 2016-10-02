@@ -9,7 +9,7 @@ require_once(__DIR__ . '/../../impl/LogingIn.php');
 class ActionTemplate {
 	
 	static private $path_to_root;
-
+	static private $before_content_yet_done;
 
 	static public function before_start($path_to_root, $required_login) {
 		self::$path_to_root = $path_to_root;
@@ -20,7 +20,8 @@ class ActionTemplate {
 			}
 		}
 	
-		self::check_errors();
+		//self::check_errors();
+		self::warn_errors();
 	}
 
 	static public function check_errors() {
@@ -29,19 +30,41 @@ class ActionTemplate {
 			self::do_error_page($errors);
 		}
 	}
+	
+	static public function warn_errors() {
+		if (Errors::is_some_error()) {
+			$errors = Errors::flush_errors();
+			self::do_warning_page($errors);
+		}
+	}
 
-	static private function do_error_page($errors) { ?>
-		<?php NAtemplate::before_content(self::$path_to_root, "An error(s) occured", null, ''); ?>
+	static private function do_error_page($errors) {
+		if (!self::$before_content_yet_done) { 
+			NAtemplate::before_content(self::$path_to_root, "An error(s) occured", null, '');
+			self::$before_content_yet_done = true;
+		}
+		 
+		foreach ($errors as $error) {
+			NAtemplate::do_error($error);
+		}
 
-		<h1>An error(s)	occured</h1>
-		<?php foreach ($errors as $error) { ?>
-			<?php NAtemplate::do_error($error); ?>
-		<?php } ?>
-		<button onclick="history.back()">Back</button>
+		NAtemplate::after_content();
+		die("<!-- That's all folks -->");
+	}
 
-		<?php NAtemplate::after_content(); ?>
-		<?php die("<!-- That's all folks -->"); ?>
-		<?php }
+	static private function do_warning_page($errors) {
+		if (!self::$before_content_yet_done) { 
+			NAtemplate::before_content(self::$path_to_root, "An error(s) occured", null, '');
+			self::$before_content_yet_done = true;
+		}
+
+		$error = new Error("Some errors occured", "Following errors occured. This is not fatal, but the requested operation may be not completed successfully.", false);
+		NAtemplate::do_error($error);
+
+		foreach ($errors as $error) {
+			NAtemplate::do_error($error);
+		}
+	}
 		
 	static public function success($redirect_to) {
 		Tools::redirect_to_relative($redirect_to);

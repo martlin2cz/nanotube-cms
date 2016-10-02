@@ -8,6 +8,7 @@ $configs = Configs::get();
 $config = $configs->get_config();
 
 ?>
+<?php NAtemplate::check_errors(); ?>
 			<form action="actions/update-config.php" method="POST">
 				<fieldset>
 					<legend><h2>Basic config</h2></legend>

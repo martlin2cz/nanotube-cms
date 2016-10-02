@@ -1,14 +1,13 @@
 <?php require_once(__DIR__ . '/../impl/NAtemplate.php'); ?>                                                                            
 <?php NAtemplate::before_content('../', 'Sites', true, ''); ?>
 
-<h1>Sites</h1>
 <?php 
 require_once(__DIR__ . '/../../impl/database/Sites.php');
 require_once(__DIR__ . '/../impl/WebTools.php');
 
 $sites = Sites::get();
 ?>
-
+<?php NAtemplate::check_errors(); ?>
 	<table>
 		<tr>
 			<th colspan="2">order</th>

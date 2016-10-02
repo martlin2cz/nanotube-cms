@@ -21,7 +21,7 @@ class FileDatabase {
 		$value = eval($code);
 
 		if (!$value) {
-			//Errors::add("File database error", "Cannot open file " . $this->file, true);
+			Errors::add("Database error", "Cannot open file " . $this->file, true);
 			error_log("FileDB: cannot load file");
 		}
 		return $value;
@@ -35,7 +35,7 @@ class FileDatabase {
 		$succ = file_put_contents($path, $code);
 	
 		if (!$succ) {
-			//Errors::add("File database error", "Cannot create file " . $this->file, true);
+			Errors::add("File database error", "Cannot create file " . $this->file, true);
 			error_log("FileDB: cannot create file");
 		}
 		return $succ;
@@ -46,7 +46,7 @@ class FileDatabase {
 		$deleted = unlink($path);
 
 		if (!$deleted) {
-			//Errors::add("File database error", "Cannot delete file " . $this->file, true);
+			Errors::add("File database error", "Cannot delete file " . $this->file, true);
 			error_log("FileDB: cannot remove file");
 		}
 		return $deleted;
@@ -59,7 +59,7 @@ class FileDatabase {
 		$putted = file_put_contents($path, $code);
 	
 		if (!$putted) {
-			//Errors::add("File database error", "Cannot write file " . $this->file, true);
+			Errors::add("File database error", "Cannot write file " . $this->file, true);
 			error_log("FileDB: cannot save file");
 		}
 		return $putted;
