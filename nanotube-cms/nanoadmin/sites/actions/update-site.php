@@ -33,18 +33,18 @@ if ($is_update) {
 	$site = $sites->get_site($current_site_id);
 	if (!$site) {
 		Errors::add("Not found", "Site $current_site_id not found", false);
-		ActionTemplate::check_errors();
 	}
 } else {
 	$site = $sites->get_site($id);
 	if (!$site) {
 		Errors::add("Yet exists", "Site $id yet exists", false);
-		ActionTemplate::check_errors();
 	}
 
 	$order_num = count($sites->all_sites()) + 1;
 	$site = new Site(null, null, null, null, null, null, null, false, $order_num);
 }
+
+ActionTemplate::check_errors();
 
 // modify data object
 $site->set_id($id);

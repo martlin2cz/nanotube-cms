@@ -30,8 +30,8 @@ if ($is_part2_ok) {
 
 if ($is_part2_ok && $is_db_test_ok) {
 	$is_part3_ok = 
-		Admins::get()->all_admins() && 
-		Sites::get()->all_sites();
+		Admins::get()->all_admins_real() && 
+		Sites::get()->all_sites_real();
 } else {
 	$is_part3_ok = null;
 }

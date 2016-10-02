@@ -20,48 +20,37 @@ class Sites {
 	}
 
 	public function __construct() {
-/*	
-		$this->sites = Array(
-			'welcome' => new Site('welcome', "Vítejte", "Ahoj, vítejte tu!", 'na', time(), 'na', time(), true),
-
-			'about-us' => new Site('about-us', "O nás", 
-				"Jsme <strong>Lorem</strong>. Děláme <em>Ipsum</em>.", 
-				'na', time(), 'na', time(), true),
-			
-			'with-error' => new Site('with-error', "Stránka s chybou", 
-				"Toto je HTML, <?php echo 'Toto je PHP'; ?> a teď bude 1/0: <?php \$x = 1/0; ?>", 
-				'na', time(), 'na', time(), true),
-			
-			'with-plugins' => new Site('with-plugins', "Stránka s pluginy", 
-				"Plugin Hello World: <?php plugin_HelloWorld('Ahoj, světe!'); ?>. Hezké, ne? A menu? <?php plugin_Menu('?id=\$site-id'); ?> A co <?php plugin_Fortune(); ?>?",
-				'na', time(), 'na', time(), true)
-
-			);
-	//XXX 
- */
-		
-
-	$this->sites = $this->load_all_sites();
+		$this->sites = $this->load_all_sites();
 	}
 
 	public function all_sites() {
+		$sites = $this->all_sites_real();
+		if (!$sites) {
+			$sites = Array($this->db_failed_site());
+		}
+		return $sites;
+	}
+
+	public function all_sites_real() {
 		return $this->sites;
 	}
 	
 	public function index_site() {
-		return reset($this->sites);
+		$sites = $this->all_sites();
+		return reset($sites);
 	}
 
 	public function get_site($site_id) {
-		if (isset($this->sites[$site_id])) {
-			return $this->sites[$site_id];
+		$sites = $this->all_sites();
+		if (isset($sites[$site_id])) {
+			return $sites[$site_id];
 		} else {
 			return null;
 		}
 	}
 
 	public function get_site_with_order($order_num) {
-		foreach ($this->sites as $site) {
+		foreach ($this->all_sites() as $site) {
 			if ($site->get_order_num() == $order_num) {
 				return $site;
 			}
@@ -70,11 +59,11 @@ class Sites {
 	}
 
 	public function error_404_site() {
-		return new Site('404', "Not found", "<p>Requested site not found.</p>");
+		return new Site('404', "Not found", "<p>Requested site not found.</p>", NANOADMIN_USERNAME, 0, NANOADMIN_USERNAME, 0, true, 1);
 	}
 
 	private function db_failed_site() {
-		return new Site('database-failed', "Database failed", "<p>Failed to load contents.</p>");
+		return new Site('database-failed', "Database failed", "<p>Failed to load contents.</p>", NANOADMIN_USERNAME, 0, NANOADMIN_USERNAME, 0, true, 1);
 	}
 
 	private function load_all_sites() {

@@ -54,6 +54,6 @@ $sites = Sites::get();
 
 	<form>
 		<button formaction="edit-site.php">Create new</button>
-	<form>	
+	</form>	
 	
 <?php NAtemplate::after_content(); ?>

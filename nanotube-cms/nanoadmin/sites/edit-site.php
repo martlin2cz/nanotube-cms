@@ -12,8 +12,13 @@ if (isset($_GET) && isset($_GET['site-id'])) {
 
 if ($site_id) {
 	$sites = Sites::get();
-	NAtemplate::check_errors();
 	$site = $sites->get_site($site_id);
+	if (!$site) {
+		Errors::add("Params error", "Site $site_id does not exist.", false);
+		$site = new Site('', '', '', null, null, null, null, false,  0);
+	}
+	NAtemplate::check_errors();
+
 	$is_edit = true;
 } else {
 	$site = new Site('unique-id-of-your-site', 'Title of your site', '<p>Text (html) of your site.</p>', null, null, null, null, false, 0);

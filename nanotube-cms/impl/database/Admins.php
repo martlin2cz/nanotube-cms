@@ -22,21 +22,34 @@ class Admins {
 
 
 	public function __construct() {
-/*	
-		$this->admins = Array(
-			'na' => new Admin('na', "Nano Admin")
-		);
-		//XXX
-*/
 		$this->admins = $this->load_all_admins();
 	}
-
+	
 	public function all_admins() {
+		$admins = $this->all_admins_real();
+		if (!$admins) {
+			$admins = Array($this->get_nanoadmin());
+		}
+		return $admins;
+	}
+	
+
+	public function all_admins_real() {
 		return $this->admins;
 	}
 	
 	public function get_admin($username) {
-		return $this->admins[$username];
+		$admins = $this->all_admins();
+		if (isset($admins[$username])) {
+			return $admins[$username];
+		} else {
+			return null;
+		}
+	}
+
+	public function get_nanoadmin() {
+		$config = Configs::get()->get_config();
+		return new Admin(NANOADMIN_USERNAME, "Nano Admin", $config->get_na_password(), $config->get_na_password_salt(), true, 0, time());
 	}
 
   private function load_all_admins() {
