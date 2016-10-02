@@ -14,7 +14,7 @@ if ($username) {
 	$admin = $admins->get_admin($username);
 	$is_edit = true;
 } else {
-	$admin = new Admin('username', 'Full Name', null, null, false, 0, 0);
+	$admin = new Admin('username', 'Full Name', null, null, true, 0, 0);
 	$is_edit = false;
 }
 
@@ -49,7 +49,7 @@ function edit_or_new_text($edit_text, $new_text) {
 
 					<label>Enabled</label>
 					<input type="checkbox" name="enabled" <?= ($admin->is_enabled() ? 'checked="true"' : '') ?>>
-					<span class="note">(here you can "ban" the user)</span>
+					<span class="note">by disabling the admin you can ban access to the nanoadmin</span>
 
 					<label>Password</label>
 					<input type="password" name="password" value="">

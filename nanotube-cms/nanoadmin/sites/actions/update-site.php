@@ -36,6 +36,12 @@ if ($is_update) {
 		ActionTemplate::check_errors();
 	}
 } else {
+	$site = $sites->get_site($id);
+	if (!$site) {
+		Errors::add("Yet exists", "Site $id yet exists", false);
+		ActionTemplate::check_errors();
+	}
+
 	$order_num = count($sites->all_sites()) + 1;
 	$site = new Site(null, null, null, null, null, null, null, false, $order_num);
 }

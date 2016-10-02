@@ -1,16 +1,21 @@
 <?php
 
+require_once(__DIR__ . '/database/Configs.php');
 require_once(__DIR__ . '/database/Sites.php');
 
-define("SITE_ID_GET_PARAM_NAME", "id");
+define("SITE_ID_GET_PARAM_NAME", "site");
+define("LINKS_FORMAT_PATTERNER", "SITE_ID");
+
 
 class Tools {
+	static private $config;
 	static private $sites;
 
 	private function __construct() {
 	}
 
 	static public function _static_init() {
+		self::$config = Configs::get()->get_config();
 		self::$sites = Sites::get();
 	}
 
@@ -75,6 +80,11 @@ class Tools {
 		} else {
 			return self::$sites->error_404_site();
 		}
+	}
+
+	static public function make_link($site_id) {
+		$format = self::$config->get_links_format();
+		return str_replace(LINKS_FORMAT_PATTERNER, $site_id, $format);
 	}
 
 	static public function redirect_to_relative($relative) {

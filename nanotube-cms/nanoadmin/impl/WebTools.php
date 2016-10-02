@@ -11,10 +11,6 @@ class WebTools {
 		return date('M j Y, G:i:s', $date);
 	}
 
-	static public function make_link_to($site, $path_to_root) {
-		return $path_to_root . "?id=" . $site->get_id();	//TODO use format... 
-	}
-
 	static public function require_posted_id($key_name, $allow_empty) {
 		$value = self::require_value($_POST, $key_name, false);
 		return self::require_id($key_name, $value, $allow_empty);

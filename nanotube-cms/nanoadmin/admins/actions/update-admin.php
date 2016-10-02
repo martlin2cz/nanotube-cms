@@ -13,15 +13,16 @@ ActionTemplate::before_start("../../", true);
 
 // check params
 $current_username = WebTools::require_posted_id('current-username', true);
+$is_update = ($current_username != '');
+
 $username = WebTools::require_posted_id('username', false);
 $full_name = WebTools::require_posted_string('full-name', false);
 $enabled = WebTools::require_posted_bool('enabled', false);
-$password = WebTools::require_posted_password('password', true);
-$password_confirm = WebTools::require_posted_password('password-confirm', true);
+$password = WebTools::require_posted_password('password', $is_update);
+$password_confirm = WebTools::require_posted_password('password-confirm', $is_update);
 
 ActionTemplate::check_errors();
 
-$is_update = ($current_username != '');
 $admins = Admins::get();
 
 // load/create data object
@@ -32,6 +33,12 @@ if ($is_update) {
 		ActionTemplate::check_errors();
 	}
 } else {
+	$admin = $admins->get_admin($username);
+	if ($admin) {
+		Errors::add("Yet exists", "Admin $username yet exists", false);
+		ActionTemplate::check_errors();
+	}
+
 	$timestamp = time();
 	$admin = new Admin(null, null, null, null, false, 0, $timestamp);
 }

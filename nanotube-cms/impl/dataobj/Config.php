@@ -47,6 +47,19 @@ class Config {
 		return $this->mysql_password;
 	}
 
+	public function get_na_password() {
+		return $this->na_password;
+	}
+	
+	public function get_na_password_salt() {
+		return $this->na_password_salt;
+	}
+
+	public function get_links_format() {
+		return $this->links_format;
+	}
+
+
 	// setters
 
 	public function set_web_title($web_title) {
@@ -77,6 +90,18 @@ class Config {
 		$this->mysql_password = $mysql_password;
 	}
 
+	public function set_na_password($na_password) {
+		$this->na_password = $na_password;
+	}
+
+	public function set_na_password_salt($na_password_salt) {
+		$this->na_password_salt = $na_password_salt;
+	}
+
+	public function set_links_format($links_format) {
+		$this->links_format = $links_format;
+	}
+	
 	// others
 	
 	public function __toString() {

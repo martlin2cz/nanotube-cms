@@ -21,8 +21,8 @@ $sites = Sites::get();
 		<?php foreach ($sites->all_sites() as $site) { ?>
 		<tr class="<?= ($site->is_visible() ? '' : 'inactive') ?>">
 				<td>
-					<a href="actions/change-order.php?site-id=<?= $site->get_id() ?>&move=up" class="change-order-link">&uarr;</a>
-					<a href="actions/change-order.php?site-id=<?= $site->get_id() ?>&move=down" class="change-order-link">&darr;</a>
+					<a href="actions/change-order.php?site-id=<?= $site->get_id() ?>&amp;move=up" class="change-order-link">&uarr;</a>
+					<a href="actions/change-order.php?site-id=<?= $site->get_id() ?>&amp;move=down" class="change-order-link">&darr;</a>
 				</td>
 	
 				<td><?= $site->get_order_num() ?></td>
@@ -30,11 +30,11 @@ $sites = Sites::get();
 				<td><?= $site->get_title() ?></td>
 				<td>
 					<div>by <?= $site->get_created_by() ?></div>
-					<div>at <?= WebTools::format_date($site->get_created_at()) ?><div>
+					<div>at <?= WebTools::format_date($site->get_created_at()) ?></div>
 				</td>
 				<td>
 					<div>by <?= $site->get_last_modified_by() ?></div>
-					<div>at <?= WebTools::format_date($site->get_last_modified_at()) ?><div>
+					<div>at <?= WebTools::format_date($site->get_last_modified_at()) ?></div>
 				</td>
 
 				<td>
@@ -47,7 +47,7 @@ $sites = Sites::get();
 						<input type="submit" value="<?= ($site->is_visible() ? 'Hide' : 'Show') ?>">
 					</form>
 				</td>
-				<td><a href="<?= WebTools::make_link_to($site, "../../../") ?>" target="_blank">Open</a></td>
+				<td><a href="<?= NAtemplate::get_path_to_root() . '../../' .  Tools::make_link($site->get_id()) ?>" target="_blank">Open</a></td>
 
 			</tr>
 		<?php } ?>

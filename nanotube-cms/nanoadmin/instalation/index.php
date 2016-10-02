@@ -100,8 +100,8 @@ if ($is_part2_ok && $is_db_test_ok) {
 
 <form action="actions/create-database.php" method="POST">
 <fieldset>
-	<legend><h2>3) Create database and install plugins</h2></legend>
-	<p>Once you saved config file and checked connection to the database, you can instal <em>nanotube-cms</em>'s database and also instal all plugins.
+	<legend><h2>3) Create database</h2></legend>
+	<p>Once you saved config file and checked connection to the database, you can instal <em>nanotube-cms</em>'s database.
 	<div class="buttons-panel">	
 	<input type="submit" value="Create database" <?= ($is_part1_ok && $is_part2_ok) ? '' : 'disabled="true"' ?>>
 	</div>
