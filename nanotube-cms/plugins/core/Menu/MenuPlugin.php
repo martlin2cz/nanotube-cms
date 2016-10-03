@@ -2,16 +2,14 @@
 
 require_once(__DIR__ . '/../AbstractPlugin.php');
 require_once(__DIR__ . '/../../impl/database/Sites.php');
+require_once(__DIR__ . '/../../impl/Tools.php');
 
-define("SITE_ID_FORMAT_SEQ", '$site-id');
 
 class MenuPlugin extends AbstractPlugin {
-	private $format;
 	private $sites;
 
-	public function __construct($format) {
-		parent::__construct('Menu');
-		$this->format = $format;
+	public function __construct($config) {
+		parent::__construct($config, 'Menu');
 		$this->sites = Sites::get();
 	}
 
@@ -23,26 +21,34 @@ class MenuPlugin extends AbstractPlugin {
 		return "<code><?php plugin_Menu(\$apc, 'links format'); ?></code>, where <code>links format</code> should be like: <code>/\$site-id</code> or <code>/?page=\$site-id</code>";	
 	}
 
-	public function render_plugin_content($apc) { ?>
+  public function get_status() {
+    return PLUGIN_STATUS_OK;
+  }
+
+  public function install() {
+    return true;
+  }
+  
+  public function uninstall() {                                                                                                        
+    return true;
+  }
+
+	public function render_plugin_content($config, $apc, $args) { ?>
 		<ol>
 		<?php foreach ($this->sites->all_sites() as $site) { ?>
-			<li><a href="<?= $this->make_url($site) ?>"><?= $site->get_title() ?></a></li>
+			<li><a href="<?= Tools::make_link($site->get_id()) ?>"><?= $site->get_title() ?></a></li>
 		<?php } ?>
 		</ol>
 	<?php }
 
-	private function make_url($site) {
-		return str_replace(SITE_ID_FORMAT_SEQ, $site->get_id(), $this->format);
-	}
-
-	static public function put($format) {
-		$plugin = new MenuPlugin($format);
+	static public function put() {
+		$plugin = new MenuPlugin();
 		$plugin->render_plugin();	
 	}
 }
 
-function plugin_Menu($format) {
-	MenuPlugin::put($format);
+function plugin_Menu() {
+	MenuPlugin::put();
 }
 
 ?>

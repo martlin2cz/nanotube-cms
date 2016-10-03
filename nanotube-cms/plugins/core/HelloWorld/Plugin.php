@@ -1,13 +1,11 @@
 <?php
 
-require_once(__DIR__ . '/../AbstractPlugin.php');
+require_once(__DIR__ . '/../../AbstractPlugin.php');
 
 class HelloWorldPlugin extends AbstractPlugin {
-	private $text;
 
-	public function __construct($text) {
-		parent::__construct('Hello World');
-		$this->text = $text;
+	public function __construct($config) {
+		parent::__construct($config, __FILE__, 'Hello World');
 	}
 
 	public function get_description() {
@@ -18,9 +16,22 @@ class HelloWorldPlugin extends AbstractPlugin {
 		return "Insert <code><?php plugin_HelloWorld('the text you wish to display'); ?></code> wherever you want.";	
 	}
 
-	public function render_plugin_content($apc) {
-		
-		echo $this->text;
+  public function get_status() {
+    return PLUGIN_STATUS_OK;
+  }
+
+  public function install() {
+    return true;
+  }
+  
+  public function uninstall() {                                                                                                        
+    return true;
+  }
+
+
+	public function render_plugin_content($config, $apc, $args) {
+		$text = $args[1];
+		echo $text;
 		
 		$apc->add_head('<!-- this head comment was added by Hello World plugin -->');
 		$apc->add_before_content('<!-- this body starting comment was added by Hello World plugin -->');
@@ -29,8 +40,8 @@ class HelloWorldPlugin extends AbstractPlugin {
 	}
 
 	static public function put($text) {
-		$plugin = new HelloWorldPlugin($text);
-		$plugin->render_plugin();	
+		$plugin = new HelloWorldPlugin();
+		$plugin->render_plugin($text);	
 	}
 }
 

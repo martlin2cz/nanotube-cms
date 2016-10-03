@@ -5,9 +5,41 @@ require_once(__DIR__ . '/../../impl/Plugins.php');
 
 $plugins = new Plugins();
 
-echo "<p>Loading plugins ...</p>\n";
-$plugins->load_all_plugins();
-echo "<p>Plugins loaded!</p>\n";
-
-?>		
+?>
+<?php NAtemplate::check_errors() ?>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Status</th>
+		<th></th>
+	</tr>
+	<?php foreach ($plugins->all_plugins() as $id => $plugin) { ?>
+		<tr>
+			<td title="id = <?= $plugin->get_id() ?>, category = <?= $plugin->get_category() ?>"><?= $plugin->get_name() ?></td>
+			<td>
+				<?= $plugin->get_status() ?>
+				<?php if ($plugin->get_status() == PLUGIN_STATUS_UNINSTALLED) { ?>
+					<form action="actions/install.php" method="GET">
+						<input type="hidden" name="plugin-id" value="<?= $plugin->get_id() ?>">
+						<input type="submit" value="Install">
+					</form>
+				<?php } else if ($plugin->get_status() == PLUGIN_STATUS_INSTALLED) { ?>
+					<form action="actions/uninstall.php" method="GET">
+						<input type="hidden" name="plugin-id" value="<?= $plugin->get_id() ?>">
+						<input type="submit" value="Uninstall" onclick="return confirm('Are you sure?')">
+					</form>
+				<?php } else if ($plugin->get_status() == PLUGIN_STATUS_OK) { ?>
+					<!-- plugin is ok -->
+				<?php } else { ?>
+					<span class="note">unknown?</span>
+				<?php } ?>
+			</td>	
+			<td>
+				<?php if ($plugin->has_settings()) { ?>
+					<a href="../../plugins/<?= $plugin->get_settings_path() ?>">Settings</a>
+				<?php } ?>
+			</td>
+		</tr>
+	<?php } ?>
+</table>
 <?php NAtemplate::after_content(); ?>
