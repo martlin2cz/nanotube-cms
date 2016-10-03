@@ -38,16 +38,15 @@ class LogingIn {
 		return !$this->is_logged_in();
 	}
 
-	public function logged_user() {
+	public function logged_admin() {
 		$username = $_SESSION[LOGGED_USER_SESSION_VAR_NAME];
 		$admin = $this->admins->get_admin($username);
-		return $admin->get_username();
+		return $admin;
 	}
 	/// log in and out /////////////////////////////////////////////
 
-	public function log_in($user) {
-		//TODO is_login_valid
-		$username = $user->get_username();
+	public function log_in($admin) {
+		$username = $admin->get_username();
 		$_SESSION[LOGGED_USER_SESSION_VAR_NAME] = $username;
 	}
 
@@ -62,7 +61,7 @@ class LogingIn {
 
 	public function check_credentials($username, $password) {
 		$admin = $this->admins->get_admin($username);
-		if ($admin == null) {
+		if (!$admin) {
 			return null;
 		}
 		
@@ -70,7 +69,7 @@ class LogingIn {
 		if (!$match) {
 			return null;
 		}
-
+		
 		return $admin;
 	}	
 }

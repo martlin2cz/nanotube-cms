@@ -1,9 +1,9 @@
 <?php
 
-require_once(__DIR__. '/../dataobj/Config.php');
-require_once(__DIR__. '/../database/FileDatabase.php');
+require_once(__DIR__ . '/../dataobj/Config.php');
+require_once(__DIR__ . '/../database/FileDatabase.php');
 require_once(__DIR__ . '/../Errors.php');
-
+require_once(__DIR__ . '/../Passwording.php');
 
 
 define("CONFIG_FILE_PATH", "config/nanoconfig.php");
@@ -48,8 +48,20 @@ class Configs {
 		$config = $db->load();
 
 		if (!$config) {
-			$config = new Config();
+			$config = $this->create_default();
 		}
+
+		return $config;
+	}
+
+	private function create_default() {
+		$config = new Config();
+		$config->set_web_title("Web");
+		
+		$passwording = new Passwording();
+		$hash = $passwording->generate_password_hash("his_nano_password");
+		$config->set_na_password($hash[0]);		
+		$config->set_na_password_salt($hash[1]);		
 
 		return $config;
 	}

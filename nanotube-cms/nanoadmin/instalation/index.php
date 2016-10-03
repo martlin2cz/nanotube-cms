@@ -39,8 +39,6 @@ if ($is_part2_ok && $is_db_test_ok) {
 Errors::clear_errors();	//yeah, here are just annoying
 ?>
 
-<h1>Instalation of nanotube-cms</h1>
-
 <p>The instalation needs three steps. Firstly you have to make up configuration file. Then you specify database connection parameters. Finally you connect do database and do the database stuff.</p>
 
 <form action="actions/save-basic-config.php" method="POST">
@@ -109,7 +107,7 @@ Errors::clear_errors();	//yeah, here are just annoying
 	</div>
 
 	<?php if ($is_part3_ok === true) { ?>
-		<?php NAtemplate::do_success("<p>Database seems installed.</p>"); ?>	
+		<?php NAtemplate::do_success("<p>Database seems installed! Try to open you web. Note that you still would need to install <a href=\"../plugins/\">plugins</a>.</p>"); ?>	
 	<?php } else if ($is_part3_ok === false) { ?>
 		<?php NAtemplate::do_error(new Error("Error", "<p>Database creation somehow failed. I'm sorry..</p>", true)); ?>	
 	<?php } ?>

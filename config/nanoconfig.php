@@ -12,7 +12,7 @@ $config -> set_mysql_user ('nanotube_db_user');
 $config -> set_mysql_password ('his_nano_password');
 $config -> set_na_password (null);
 $config -> set_na_password_salt (null);
-$config -> set_links_format ('#SITE_ID');
+$config -> set_links_format ('?id=SITE_ID');
 
 return $config;
 ?>

@@ -28,7 +28,8 @@ class Admins {
 	public function all_admins() {
 		$admins = $this->all_admins_real();
 		if (!$admins) {
-			$admins = Array($this->get_nanoadmin());
+			$nanoadmin = $this->get_nanoadmin();
+			$admins = Array($nanoadmin->get_username() => $nanoadmin);
 		}
 		return $admins;
 	}

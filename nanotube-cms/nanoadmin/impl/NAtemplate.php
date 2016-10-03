@@ -34,27 +34,30 @@ class NAtemplate {
 		</head>
 		<body>
 			<header>
-				<section>
-					<h2>nanoadmin</h2>
+				<section id="na-header">
+					<h2><img src="<?= self::$path_to_root ?>images/nanoadmin.png" alt="nanoadmin logo"></h2>
 				</section>
 			
 				<?php if (LogingIn::get()->is_logged_in()) { ?>		
-				<nav>
-<!-- TODO make ol and li s -->
-				<a href="<?= self::$path_to_root ?>web-config/">Web config</a>
-				<a href="<?= self::$path_to_root ?>sites/">Sites</a>
-				<a href="<?= self::$path_to_root ?>plugins/">Plugins</a>
-				<a href="<?= self::$path_to_root ?>admins/">Admins</a>
+				<nav id="na-main-menu">
+					<ul>
+						<li><a href="<?= self::$path_to_root ?>/../../../">&larr;</a></li>
+						<li><a href="<?= self::$path_to_root ?>web-config/">Web config</a></li>
+						<li><a href="<?= self::$path_to_root ?>sites/">Sites</a></li>
+						<li><a href="<?= self::$path_to_root ?>plugins/">Plugins</a></li>
+						<li><a href="<?= self::$path_to_root ?>admins/">Admins</a></li>
+					</ul>
 				</nav>
 				<?php } ?>
 			
 				<?php if (!is_null($require_login)) { ?>
-					<section>
+					<section id="na-login-panel">
 						<?php require_once(__DIR__ . '/../components/login-panel.php'); ?>
 					</section>
 				<?php } ?>
 			</header>	
 		<main>
+		<h1><?= $title ?></h1>
 		<?php /* self::check_errors(); */ ?>
 		<article>
 	<?php }

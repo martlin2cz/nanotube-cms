@@ -36,7 +36,9 @@ class MenuPlugin extends AbstractPlugin {
 	public function render_plugin_content($config, $apc, $args) { ?>
 		<ol>
 		<?php foreach ($this->sites->all_sites() as $site) { ?>
-			<li><a href="<?= Tools::make_link($site->get_id()) ?>"><?= $site->get_title() ?></a></li>
+			<?php if ($site->is_visible()) { ?>
+				<li><a href="<?= Tools::make_link($site->get_id()) ?>"><?= $site->get_title() ?></a></li>
+			<?php } ?>
 		<?php } ?>
 		</ol>
 	<?php }

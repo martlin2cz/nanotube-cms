@@ -1,19 +1,122 @@
+/**
+ *
+ * Colors: bg: #808088, #E0E0E8 fg: #404048, #202028, others: #C0C0C0
+ */
+
 /*******************************************************************/
 /* base page styles */
+body, html {
+	padding: 0;
+	margin: 0;
+	
+	font-family: Sans;
+	color: #202028;
+}
+
 header {
-	background-color: rgb(255, 230, 200);
-	padding: 2%;
+	display: block;
+	background-color: #808088;
+	padding: 1eM 2%;
+	min-height: 4eM;
 }
 
 main {
-	background-color: rgb(255, 240, 220);
-	padding: 1%;
-	margin: 1%;
+	display: block;
+	background-color: #E0E0E8;
+	padding: 4%;
+}
+
+article {
+	display: block;
+	padding-bottom: 1%;
+}
+
+footer {
+	display: block;
+	background-color: #808088;
+	padding: 2%;
 }
 
 a {
+	color: #404048;
+}
+
+a:hover {
+	color: #202028;
+}
+
+/*******************************************************************/
+/* page layout */
+
+#na-header {
+	display: block;
+	float: left;
+}
+
+#na-main-menu {
+	display: block;
+	float:left;
+	padding-left: 4%;
+	padding-top: 1eM;
+}
+
+#na-login-panel {
+	display: block;
+	float: right;
+	padding-top: 0eM;
+}
+
+/** **/
+
+#na-header h2 {
+	padding: 0;
+	margin: 0;
+}
+#na-header h2 img {
+	max-height: 4eM;
+}
+
+#na-main-menu ul {
+	list-style: none;
+	display: inline;
+	padding: 0;
+	margin: 0;
+}
+
+#na-main-menu li {
+	list-style: none;
+	display: inline;
+	padding: 0;
+	margin: 0;
+	font-size: 150%;
+	padding: 0.5eM;
+}
+
+#na-main-menu li a {
+	font-weight: bold;
 	text-decoration: none;
 }
+
+#na-login-panel form fieldset {
+	text-align: right;
+	padding: 1eM;
+}
+
+#na-login-panel form fieldset input {
+	padding: 0;
+	margin: 0 0.5eM;
+	display: inline;
+	float: none;
+	max-width: 10eM;
+}
+
+
+#na-login-panel form fieldset label {
+	padding: 0;
+	margin: 0;
+	display: inline;
+	float: none;
+} 
 /*******************************************************************/
 /* common classes */
 
@@ -25,18 +128,17 @@ a {
 /* tables */
 table {
 	border-collapse: collapse;
-/*	border: 1px solid gray;*/
 	width: 100%;
 	margin: 1em 0;
 }
 
 table td, th {
-	border: 1px solid gray;
+	border: 1px solid #808088;
 	padding: 1eM 0.5%;
 }
 
 table th {
-		background-color: lightgray;
+		background-color: #808088;
 }
 
 table td {
@@ -61,8 +163,8 @@ fieldset label {
 	display: block;
 	float: left;
 	
-	min-width: 15%;
-	margin: 0.5eM 2%;
+	min-width: 12eM;
+	margin: 0.5eM 1%;
 }
 
 fieldset input {
@@ -111,6 +213,7 @@ fieldset span.note {
 	display: block;
 	float: left;
 	font-style: italic;
+	padding: 0.5eM 1%;
 }
 
 
@@ -139,7 +242,7 @@ fieldset span.note {
 /********************************************************************/
 /* Custom styles */
 table tr.inactive {
-	background-color: gray;
+	background-color: #C0C0C0;
 }
 
 a.change-order-link {
@@ -150,11 +253,11 @@ a.change-order-link {
 /** table bordering */
 
 .with-bottom-border {
-	border-bottom: 1px solid gray !important;
+	border-bottom: 1px solid #808088 !important;
 }
 
 table.with-no-cells-border {
-	border: 1px solid gray;
+	border: 1px solid #808088;
 }
 
 table.with-no-cells-border td {

@@ -22,7 +22,7 @@ $visible = WebTools::require_posted_bool('visible');
 ActionTemplate::check_errors();
 
 // infer params
-$user = LogingIn::get()->logged_user();
+$user = LogingIn::get()->logged_admin()->get_username();
 $timestamp = time();
 
 $is_update = ($current_site_id != '');
