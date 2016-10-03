@@ -14,7 +14,7 @@ class SiteLinkPlugin extends AbstractPlugin {
 	}
 
 	public function get_usage() {
-		return "Insert <code>&lt;?php plugin_LinkToSite('site id', 'text of link'); ?&lt;</code> wherever you want.";	
+		return "Insert <code>&lt;?php plugin_LinkToSite('site id', 'text of link'); ?&gt;</code> wherever you want.";	
 	}
 
   public function get_status() {

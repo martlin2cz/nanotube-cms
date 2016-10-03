@@ -1,0 +1,9 @@
+article {
+	padding: 5%;
+	margin: 5%;
+	width: 80%;
+	height: 80%;
+
+	background-color: rgb(250, 220,200);
+	text-align: center;
+}

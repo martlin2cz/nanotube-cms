@@ -1,0 +1,58 @@
+header {
+	background-color: rgb(255, 230, 200);
+	padding: 2%;
+}
+
+main {
+	background-color: rgb(255, 250, 220);
+  display: block;
+	width: 70%;
+	float: right;
+	padding: 2%;
+	margin: 1% 0;
+}
+
+h2 {
+	text-decoration: underline;
+}
+
+aside {
+	background-color: rgb(220, 255, 200);
+	display: block;
+	width: 20%;
+	float: left;
+	padding: 2%;
+	margin: 1% 0;
+}
+
+footer {
+	clear: both;
+	background-color: rgb(150, 255, 240);
+	padding: 2%;
+}
+
+
+
+/* menu styling */
+
+nav {
+}
+
+nav ol {
+	list-style: none;
+	padding: 0;
+}
+
+nav li {
+	list-style: none;
+	padding-top: 0.5eM;
+}
+
+nav a {
+	text-decoration: none;
+	font-weight: bold;
+	color: rgb(0, 50, 100);
+}
+nav a:hover {
+	color: rgb(50, 0, 50);
+}

@@ -29,11 +29,14 @@ abstract class NormalPageTemplate extends PreRenderingPageTemplate {
 		<!--TODO meta tags, styles, ... -->		
 		<link rel="stylesheet" href="css/styles.css" type="text/css" />
 		<script type="text/javascript" src="js/scripts.js"></script>
+		<?php $this->add_specific_headers() ?>
 	<?php }
 
 	protected function do_site_content($apc) {
-		Tools::run_html_with_php($apc, $this->site->get_content());		
+		Tools::run_html_with_php($apc, $this->site->get_content());
 	}
+
+	protected abstract function add_specific_headers();
 
 }
 

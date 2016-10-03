@@ -65,6 +65,11 @@ class LogingIn {
 			return null;
 		}
 		
+		if (!$admin->is_enabled()) {
+			return null;
+		}
+
+
 		$match = $this->passwording->matches($password, $admin->get_password(), $admin->get_password_salt());
 		if (!$match) {
 			return null;

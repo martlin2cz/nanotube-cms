@@ -41,7 +41,7 @@ class NAtemplate {
 				<?php if (LogingIn::get()->is_logged_in()) { ?>		
 				<nav id="na-main-menu">
 					<ul>
-						<li><a href="<?= self::$path_to_root ?>/../../../">&larr;</a></li>
+						<li><a href="<?= self::$path_to_root ?>/../../../" title="Back to web">&larr;</a></li>
 						<li><a href="<?= self::$path_to_root ?>web-config/">Web config</a></li>
 						<li><a href="<?= self::$path_to_root ?>sites/">Sites</a></li>
 						<li><a href="<?= self::$path_to_root ?>plugins/">Plugins</a></li>

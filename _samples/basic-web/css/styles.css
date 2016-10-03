@@ -25,11 +25,13 @@ nav {
 }
 
 nav ol {
+	list-style: none;
 	display: inline;
 	padding: 0;
 }
 
 nav li {
+	list-style: none;
 	display: inline;
 	list-style: none;
 }
