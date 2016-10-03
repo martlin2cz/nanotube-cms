@@ -83,6 +83,21 @@ class MysqlDatabase {
 		$this->invoke_sql($sql);
 		return $this->check_error("data update in table $table");
 	}
+	
+	public function delete($table, $where) {
+		$this->connect();
+		$sql = "DELETE FROM $table";
+		if ($where) {
+			$sql .= " WHERE $where";
+		} else {
+			Errors::add("Params error", "No where clausule specified when removing.");
+			return false;
+		}
+
+		$this->invoke_sql($sql);
+		return $this->check_error("data removing from table $table");
+	}
+
 
 	public function select($table, $columns, $where, $order) {
 		$this->connect();

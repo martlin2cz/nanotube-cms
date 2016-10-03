@@ -71,13 +71,21 @@ fieldset input {
 	float: left;
 
 	min-width: 10%;
-	margin: 0 2%;
+/*	margin: 0 2%;*/
+	margin: 0.5eM 2%;
+
 }
 
 fieldset input[type=checkbox] {
 	float: left;
 	display: block;
 	min-width: 1eM;
+}
+fieldset select {
+	float: left;
+	display: block;
+
+	margin: 0.5eM 2%;
 }
 
 fieldset textarea {

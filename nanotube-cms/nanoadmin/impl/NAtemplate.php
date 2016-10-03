@@ -29,7 +29,8 @@ class NAtemplate {
 	<html>
 		<head>	
 			<title><?= $title ?> | nanoadmin</title>
-			<link rel="stylesheet" href="<?= self::$path_to_root ?>css/styles.css" type="text/css" />	
+			<link rel="stylesheet" href="<?= self::$path_to_root ?>css/styles.css" type="text/css" />
+			<?= $additional_heads ?>
 		</head>
 		<body>
 			<header>

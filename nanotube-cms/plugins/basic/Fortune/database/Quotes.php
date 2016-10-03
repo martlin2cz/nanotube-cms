@@ -22,13 +22,41 @@ class Quotes {
 	}
 	
 	public function all_quotes_real($dictionary_id) {
-		return $this->quotes;
+		if ($dictionary_id) {
+			if (isset($this->quotes[$dictionary_id])) {
+				return $this->quotes[$dictionary_id];
+			}
+		}
+
+		return $this->merge_all_dictionaries();
 	}
 
 	public function get_random_quote($dictionary_id) {
-		$index = rand(0, count($this->quotes) - 1);
-		return $this->quotes[$index];
+		$quotes = $this->all_quotes($dictionary_id);
+		$index = rand(0, count($quotes) - 1);
+		return $quotes[$index];
 	}
+
+	public function get_quote($id) {
+		foreach ($this->all_quotes(null) as $quote) {
+			if ($quote->get_id() == $id) {
+				return $quote;
+			}
+		}
+
+		return null;
+	}
+
+
+
+	public function get_all_dictionaries() {
+		return array_keys($this->quotes);
+	}
+
+	private function merge_all_dictionaries() {
+		return call_user_func_array("array_merge", $this->quotes);
+	}
+
 
 	private function load_quotes() {
 		$config = Configs::get()->get_config();
@@ -41,21 +69,47 @@ class Quotes {
 		
 		$quotes = Array();
 		foreach ($data as $item) {
+			$id = $item['id'];
 			$dictionary_id = $item['dictionary_id'];
 			$text = $item['text'];
 			$author = $item['author'];
 
-			$quote = new Quote($dictionary_id, $author, $text);
+			$quote = new Quote($id, $dictionary_id, $author, $text);
 			$quotes[$dictionary_id][] = $quote;
 		}
-/*
-		$quotes['it'][] = new Quote("Bill Gates", "640kB should be enough for everyone");
-		$quotes['it'][] = new Quote("Linus Torvalds", "We all know linux is great. It does infinite loop in 13 seconds.");
-		$quotes['philosophy'][] = new Quote("Douglas Adams", "The answer is 42");
- */
+	
 		return $quotes;
 	}
 
+	public function insert_quote($quote) {
+	 $config = Configs::get()->get_config();
+	 $db = new MysqlDatabase($config);
+
+	 return $db->insert(QUOTES_TABLE_NAME, "(dictionary_id, author, text)", "("
+		 . "'" . $quote->get_dictionary_id() . "', "
+		 . "'" . $db->escape_string($quote->get_author()) . "', "
+		 . "'" . $db->escape_string($quote->get_text()) . "'"
+		 . ")");
+	}
+
+	public function update_quote($quote) {
+	 $config = Configs::get()->get_config();
+	 $db = new MysqlDatabase($config);
+
+	 return $db->update(QUOTES_TABLE_NAME, 
+		   "dictionary_id = '" . $quote->get_dictionary_id() . "', "
+		 . "author = '" . $db->escape_string($quote->get_author()) . "', "
+		 . "text = '" . $db->escape_string($quote->get_text()) . "'",
+			 "id = " . $quote->get_id());
+	}
+	
+	public function remove_quote($quote) {
+	 $config = Configs::get()->get_config();
+	 $db = new MysqlDatabase($config);
+
+	 return $db->delete(QUOTES_TABLE_NAME, "id = " . $quote->get_id());
+	}
+	
 	public function is_ok() {
 		return $this->all_quotes_real(null);
 	}
