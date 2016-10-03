@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__ . "/../impl/Plugins.php");
+require_once(__DIR__ . "/../impl/database/Configs.php");
 
 define("PLUGIN_STATUS_OK", "ok");
 define("PLUGIN_STATUS_INSTALLED", "installed");
@@ -15,10 +16,10 @@ abstract class AbstractPlugin {
 	private $name;
 
 	/**
-	 * Plugin must be initialized with the config and the name of the plugin.
+	 * Plugin must be initialized with the file and the name of the plugin.
 	 * */
-	public function __construct($config, $file, $name) {
-		$this->config = $config;
+	public function __construct($file, $name) {
+		$this->config = Configs::get()->get_config();
 		$this->name = $name;
 		$this->id = Plugins::file_to_id($file); 
 		$this->category = Plugins::file_to_category($file); 

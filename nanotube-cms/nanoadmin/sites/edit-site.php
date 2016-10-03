@@ -3,6 +3,8 @@
 <?php
 
 require_once(__DIR__ . '/../../impl/database/Sites.php');
+require_once(__DIR__ . '/../../impl/Plugins.php');
+
 
 if (isset($_GET) && isset($_GET['site-id'])) {
 	$site_id = $_GET['site-id'];
@@ -66,5 +68,20 @@ function edit_or_new_text($edit_text, $new_text) {
 					</div>
 				</fieldset>
 			</form>		
+<?php
+$plugins = Plugins::get();
+
+NAtemplate::check_errors();
+?>
+				<h2>Avaible plugins</h2>
+				<table class="with-no-cells-border">
+					<?php foreach ($plugins->all_plugins() as $plugin) { ?>
+					<tr>
+						<td><?= $plugin->get_name() ?></td>
+						<td><?= $plugin->get_usage() ?></td>
+						<td><a href="../plugins/plugin-info.php?id=<?= $plugin->get_id() ?>" target="_blank">More info</a></td>
+					</tr>
+					<?php } ?>
+				</table>
 
 <?php NAtemplate::after_content(); ?>

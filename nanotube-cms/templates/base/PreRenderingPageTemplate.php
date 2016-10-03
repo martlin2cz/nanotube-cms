@@ -1,6 +1,8 @@
 <?php
 
 require_once(__DIR__ . '/BasePageTemplate.php');
+require_once(__DIR__ . '/../../impl/Plugins.php');
+
 
 /**
  * Base template which firstly renders body into string (and according to that modifies head section) and finally then renders head - and directly outputs the rendered body.

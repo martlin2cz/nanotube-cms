@@ -51,7 +51,6 @@ class Plugins {
 		foreach ($files as $file) {
 			$id = self::file_to_id($file);
 			$class_name = $this->id_to_class_name($id);
-			
 			$done = include_once($file);
 			if (!$done) {
 				Errors::add("Plugin error", "Plugin $id contains some errors.");

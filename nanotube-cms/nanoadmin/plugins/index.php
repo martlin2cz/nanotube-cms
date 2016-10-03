@@ -7,7 +7,7 @@ $plugins = new Plugins();
 
 ?>
 <?php NAtemplate::check_errors() ?>
-<table>
+<table class="with-no-cells-border">
 	<tr>
 		<th>Name</th>
 		<th>Status</th>
@@ -35,9 +35,15 @@ $plugins = new Plugins();
 				<?php } ?>
 			</td>	
 			<td>
+				<a href="plugin-info.php?id=<?= $plugin->get_id() ?>">More info</a>
 				<?php if ($plugin->has_settings()) { ?>
 					<a href="../../plugins/<?= $plugin->get_settings_path() ?>">Settings</a>
 				<?php } ?>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" class="with-bottom-border">
+			<?= $plugin->get_description(); ?>
 			</td>
 		</tr>
 	<?php } ?>

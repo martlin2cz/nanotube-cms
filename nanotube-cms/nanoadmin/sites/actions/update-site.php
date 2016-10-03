@@ -36,7 +36,7 @@ if ($is_update) {
 	}
 } else {
 	$site = $sites->get_site($id);
-	if (!$site) {
+	if ($site) {
 		Errors::add("Yet exists", "Site $id yet exists", false);
 	}
 

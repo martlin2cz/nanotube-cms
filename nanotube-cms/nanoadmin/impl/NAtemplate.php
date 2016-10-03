@@ -56,6 +56,7 @@ class NAtemplate {
 			</header>	
 		<main>
 		<?php /* self::check_errors(); */ ?>
+		<article>
 	<?php }
 
 	static public function after_content() {
@@ -65,6 +66,7 @@ class NAtemplate {
 	}
 
 	static private function put_after_content_html() { ?>
+		</article>
 		<?php /* self::check_errors(); */ ?>
 		<button onclick="history.back()">Back</button>
 		</main>

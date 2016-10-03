@@ -1,15 +1,15 @@
 <?php
 
-require_once(__DIR__ . '/../AbstractPlugin.php');
-require_once(__DIR__ . '/../../impl/database/Sites.php');
-require_once(__DIR__ . '/../../impl/Tools.php');
+require_once(__DIR__ . '/../../AbstractPlugin.php');
+require_once(__DIR__ . '/../../../impl/database/Sites.php');
+require_once(__DIR__ . '/../../../impl/Tools.php');
 
 
 class MenuPlugin extends AbstractPlugin {
 	private $sites;
 
-	public function __construct($config) {
-		parent::__construct($config, 'Menu');
+	public function __construct() {
+		parent::__construct(__FILE__, 'Menu');
 		$this->sites = Sites::get();
 	}
 
@@ -18,7 +18,7 @@ class MenuPlugin extends AbstractPlugin {
 	}
 
 	public function get_usage() {
-		return "<code><?php plugin_Menu(\$apc, 'links format'); ?></code>, where <code>links format</code> should be like: <code>/\$site-id</code> or <code>/?page=\$site-id</code>";	
+		return "<code>&lt;?php plugin_Menu(); ?&gt;</code>";	
 	}
 
   public function get_status() {

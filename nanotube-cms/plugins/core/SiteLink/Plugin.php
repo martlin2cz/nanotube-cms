@@ -5,8 +5,8 @@ require_once(__DIR__ . '/../../../impl/Tools.php');
 
 class SiteLinkPlugin extends AbstractPlugin {
 
-	public function __construct($config) {
-		parent::__construct($config, __FILE__, 'Site link');
+	public function __construct() {
+		parent::__construct(__FILE__, 'Site link');
 	}
 
 	public function get_description() {
@@ -14,7 +14,7 @@ class SiteLinkPlugin extends AbstractPlugin {
 	}
 
 	public function get_usage() {
-		return "Insert <code><?php plugin_LinkToSite('site id', 'text of link'); ?></code> wherever you want.";	
+		return "Insert <code>&lt;?php plugin_LinkToSite('site id', 'text of link'); ?&lt;</code> wherever you want.";	
 	}
 
   public function get_status() {

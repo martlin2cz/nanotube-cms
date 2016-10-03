@@ -6,8 +6,8 @@ require_once(__DIR__ . '/database/Quotes.php');
 class FortunePlugin extends AbstractPlugin {
 	private $quotes;
 
-	public function __construct($config) {
-		parent::__construct($config, __FILE__, 'Fortune');
+	public function __construct() {
+		parent::__construct(__FILE__, 'Fortune');
 		$this->quotes = new Quotes();
 	}
 
@@ -16,7 +16,7 @@ class FortunePlugin extends AbstractPlugin {
 	}
 
 	public function get_usage() {
-		return "<code><?php plugin_Fortune('id of dictionary')); ?></code>";	
+		return "<code>&lt;?php plugin_Fortune('id of dictionary')); ?&gt;</code>";	
 	}
 
 	public function get_status() {
@@ -35,9 +35,9 @@ class FortunePlugin extends AbstractPlugin {
 		return $this->quotes->uninstall();
 	}
 	public function render_plugin_content($apc, $config, $args) {
-		$dictionary = $args[0];
+		$dictionary_id = $args[0];
 		$quote = $this->quotes->get_random_quote($dictionary_id); 
-		?><cite><?= $quote->get_text() ?>, <?= $quote->get_author() ?></cite>
+		?><cite><?= $quote->get_text() ?><?php if ($quote->get_author()) { ?>, <?= $quote->get_author() ?><?php } ?></cite>
 	<?php }
 
 	static public function put($dictionary_id) {

@@ -21,7 +21,6 @@ a {
 	display: inline;
 }
 
-
 /*******************************************************************/
 /* tables */
 table {
@@ -147,3 +146,18 @@ a.change-order-link {
 	font-size: 80%;	
 	font-weight: bold;
 }
+
+/** table bordering */
+
+.with-bottom-border {
+	border-bottom: 1px solid gray !important;
+}
+
+table.with-no-cells-border {
+	border: 1px solid gray;
+}
+
+table.with-no-cells-border td {
+	border: none;
+}
+
