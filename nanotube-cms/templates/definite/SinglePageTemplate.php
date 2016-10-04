@@ -30,6 +30,7 @@ abstract class SinglePageTemplate extends PreRenderingPageTemplate {
 		<!--TODO meta tags, styles, ... -->		
 		<link rel="stylesheet" href="css/styles.css" type="text/css" />
 		<script type="text/javascript" src="js/scripts.js"></script>
+		<?= $apc->get_heads() ?>
 	<?php }
 
 	protected function do_site_content($apc, $site) {

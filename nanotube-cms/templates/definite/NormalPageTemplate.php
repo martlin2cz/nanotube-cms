@@ -29,6 +29,7 @@ abstract class NormalPageTemplate extends PreRenderingPageTemplate {
 		<!--TODO meta tags, styles, ... -->		
 		<link rel="stylesheet" href="css/styles.css" type="text/css" />
 		<script type="text/javascript" src="js/scripts.js"></script>
+		<?= Tools::render_array($apc->get_heads()) ?>
 		<?php $this->add_specific_headers() ?>
 	<?php }
 
