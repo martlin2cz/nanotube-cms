@@ -10,7 +10,7 @@ $sites = Sites::get();
 <?php NAtemplate::check_errors(); ?>
 	<table>
 		<tr>
-			<th colspan="2">order</th>
+			<th>order</th>
 			<th>ID</th>
 			<th>title</th>
 			<th>created</th>
@@ -22,9 +22,8 @@ $sites = Sites::get();
 				<td>
 					<a href="actions/change-order.php?site-id=<?= $site->get_id() ?>&amp;move=up" class="change-order-link">&uarr;</a>
 					<a href="actions/change-order.php?site-id=<?= $site->get_id() ?>&amp;move=down" class="change-order-link">&darr;</a>
+					<?= $site->get_order_num() ?>
 				</td>
-	
-				<td><?= $site->get_order_num() ?></td>
 				<td><?= $site->get_id() ?></td>
 				<td><?= $site->get_title() ?></td>
 				<td>

@@ -31,7 +31,7 @@ function rest_of_url() {
 //var to = "_samples/basic-web/";
 var to = "_samples/basic-web-with-sidebar/";
 //var to = "_samples/single-paged-web/";
-var to = "_samples/primitive-web/";
+//var to = "_samples/primitive-web/";
 
 
 var rest = rest_of_url();

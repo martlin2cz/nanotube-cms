@@ -264,3 +264,10 @@ table.with-no-cells-border td {
 	border: none;
 }
 
+
+.html-shorthand-item {
+	display: inline-block;
+	vertical-align: middle;
+	background-color: #C0C0C0;
+	padding: 0.5eM;
+}

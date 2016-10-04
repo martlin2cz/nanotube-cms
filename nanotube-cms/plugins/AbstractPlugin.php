@@ -14,6 +14,7 @@ define("PLUGIN_STATUS_UNINSTALLED", "uninstalled");
 abstract class AbstractPlugin {
 	private $config;
 	private $name;
+	private $instances_count;
 
 	/**
 	 * Plugin must be initialized with the file and the name of the plugin.
@@ -23,6 +24,7 @@ abstract class AbstractPlugin {
 		$this->name = $name;
 		$this->id = Plugins::file_to_id($file); 
 		$this->category = Plugins::file_to_category($file); 
+		$this->instances_count = 0;
 	}
 	
 	/**
@@ -85,13 +87,27 @@ abstract class AbstractPlugin {
 		return $this->category . "/" . $this->id . "/" . PLUGIN_SETTINGS_DIR_NAME;
 	}
 
+
+	/**
+	 * Returns current number of usages of this plugin.
+	 * */
+	protected function get_instances_count() {
+		return $this->instances_count;
+	}
 	/**
 	 * Renders this plugin into page. Can be specified optional params.
 	 * */
 	public function render_plugin() {
-		$apc = Plugins::get_current_apc();
-		$args = func_get_args();
-		$this->render_plugin_content($this->config, $apc, $args);
+		if ($this->get_status() == PLUGIN_STATUS_UNINSTALLED) {
+			?><section class="error">Plugin <?php $this->get_name() ?> not installed.</div><?php
+		} else {
+			$apc = Plugins::get_current_apc();
+			$args = func_get_args();
+		
+			$this->render_plugin_content($this->config, $apc, $args);
+		
+			$this->instances_count++;
+		}
 	}
 
 	/**

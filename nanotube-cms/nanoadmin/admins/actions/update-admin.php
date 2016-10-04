@@ -40,7 +40,7 @@ if ($is_update) {
 	}
 
 	$timestamp = time();
-	$admin = new Admin(null, null, null, null, false, 0, $timestamp);
+	$admin = new Admin("", "", null, null, false, 0, $timestamp);
 }
 
 // modify data object

@@ -54,7 +54,10 @@ function edit_or_new_text($edit_text, $new_text) {
 
 					<label>Password</label>
 					<input type="password" name="password" value="">
+					<?php if (is_edit()) { ?>
 					<span class="note">leave blank if don't want to change</span>
+					<?php } ?>
+
 
 					<label>Password confirm</label>
 					<input type="password" name="password-confirm" value="">

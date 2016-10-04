@@ -48,6 +48,9 @@ class LogingIn {
 	public function log_in($admin) {
 		$username = $admin->get_username();
 		$_SESSION[LOGGED_USER_SESSION_VAR_NAME] = $username;
+
+		$admin->set_last_login_at(time());
+		$this->admins->update_admin_last_login($admin);
 	}
 
 

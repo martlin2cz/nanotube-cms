@@ -69,8 +69,8 @@ class Admins {
         $item['password'],
         $item['password_salt'],
         $item['enabled'],
-				strtotime($item['registered_at']),
-				strtotime($item['last_login_at'])
+				strtotime($item['last_login_at']),
+				strtotime($item['registered_at'])
 			);
       $result[$admin->get_username()] = $admin;
     } 
@@ -90,6 +90,14 @@ class Admins {
 			. "registered_at='" . date(MYSQL_DATE_FORMAT, $admin->get_registered_at()) . "', "
 			. "last_login_at='" . date(MYSQL_DATE_FORMAT, $admin->get_last_login_at()) . "'",
 			"username = '$username'");
+	}
+	public function update_admin_last_login($admin) {
+		$config = Configs::get()->get_config();
+		$db = new MysqlDatabase($config);
+		
+		return $db->update(ADMINS_TABLE_NAME, 
+			"last_login_at='" . date(MYSQL_DATE_FORMAT, $admin->get_last_login_at()) . "'",
+			"username = '" . $admin->get_username() . "'");
 	}
 	
 	public function create_admin($admin) {

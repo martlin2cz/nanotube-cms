@@ -1,17 +1,24 @@
 # nanotube-cms
 The content managment system tiny as nanotubes!
 
-Extremelly small, lightweight, but amazingelly powerful CMS.
+Extremelly small, lightweight, but amazingly powerful CMS. Made for small personal presentations. No categories, no comments, no menu creation, no user roles. No bilions of bilions of templates and plugins.
+
+![logo](https://cdn.rawgit.com/martlin2cz/nanotube-cms/master/_about/logo.png)
 
 Take a look into `_samples` directory to see how to use.
 
 Some preview images:
+![sample web](https://cdn.rawgit.com/martlin2cz/nanotube-cms/master/_about/screen-sample1.png =300x)
+![welcome site of nanoadmin](https://cdn.rawgit.com/martlin2cz/nanotube-cms/master/_about/screen-nanoadmin-welcome.png =300x)
+![edit site form](https://cdn.rawgit.com/martlin2cz/nanotube-cms/master/_about/screen-nanoadmin-edit-site.png =300x)
+![admins table](https://cdn.rawgit.com/martlin2cz/nanotube-cms/master/_about/screen-nanoadmin-admins.png =300x)
+![installation wizzard](https://cdn.rawgit.com/martlin2cz/nanotube-cms/master/_about/screen-nanoadmin-installation.png =300x)
 
 ## Main concepts
 
 ### Sites
 
-Everything is about the sites. Your web is composite of sites. No categories, tags and other 'crap'. Just list of sites.
+Everything is about the sites. Your web is composite of sites. No categories, tags and other 'crap'. Just sites.
 
 ### Admins
 
@@ -19,7 +26,7 @@ The build-in administrative tool, nanoadmin allows access to multiple admins. Ea
 
 ### Templates
 
-In nanotube I say, you never can make precise web design without programing or HTML/CSS coding. So, templates, the-how-the-final-web-page-would-like is just a PHP class. You can override one of provided or you can implement completelly custom.
+In nanotube I say, you never can make precise web design without programing or HTML/CSS coding. So, template, the-how-the-final-web-page-would-like is just a PHP class. You can override one of provided or implement completelly custom. 
 
 ### Plugins
 
@@ -42,7 +49,9 @@ To install nanotube clone into required folder on your server. Then, open in bro
 
 ### Create template
 
-Then choose one of the samples (recomended), copy its directory content into ROOT and - you can start to design your web! When complete, you should delete everything starting with `_` (`$ rm -r _*`) from ROOT.
+Then choose one of the samples (recomended), copy its directory content into ROOT and - you can start to design your web! Hopefully you would only need to modify css styles. In the other case you would have to rub the Template class. 
+
+When complete, you should delete everything starting with `_` (`$ rm -r _*`) from ROOT.
 
 ### Implement plugin
 
