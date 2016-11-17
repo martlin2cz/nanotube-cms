@@ -14,8 +14,8 @@ require_once(__DIR__ . '/nanotube-cms/impl/Tools.php');
 $config = Configs::get()->get_config();
 
 //setup html head and body templates
-$template = new MyTemplate($config);
+$template = new MyTemplate($config, "../../");
 
 //and finaly render!
-$template->render_template(null);
+$template->render_template();
 ?>

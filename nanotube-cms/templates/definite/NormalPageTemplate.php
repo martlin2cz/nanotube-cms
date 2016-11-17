@@ -31,7 +31,12 @@ abstract class NormalPageTemplate extends PreRenderingPageTemplate {
 
 	protected function do_head($apc) { ?>
 		<title><?= $this->get_title() ?><?= $apc->get_title_suffix() ?></title>
-		<!--TODO meta tags, styles, ... -->		
+		<!--TODO meta tags, styles, ... -->	
+		
+		<?php if (!is_null($apc->get_resources_root())) { ?>
+			<base href="<?= $apc->get_resources_root() ?>">
+		<?php } ?>
+		
 		<?= Tools::render_array($apc->get_pre_heads()) ?>
 		<link rel="stylesheet" href="css/styles.css" type="text/css" />
 		<script type="text/javascript" src="js/scripts.js"></script>
@@ -44,6 +49,12 @@ abstract class NormalPageTemplate extends PreRenderingPageTemplate {
 	}
 
 	protected abstract function add_specific_headers();
+
+
+ 	public function render_site($site, $resources_root) {
+		$this->site = $site;
+		$this->render_template($resources_root);
+	}
 
 }
 

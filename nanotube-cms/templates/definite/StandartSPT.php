@@ -20,7 +20,6 @@ class StandartSPT extends SinglePageTemplate {
 
 		<main>
 			<?php $this->do_before_sites($apc); ?>
-
 			<?php foreach ($this->get_sites() as $site) { ?>
 				<?php if ($site->is_visible()) { ?>	
 					<article id="<?= $site->get_id() ?>">

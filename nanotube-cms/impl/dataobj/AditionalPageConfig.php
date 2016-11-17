@@ -6,13 +6,15 @@ class AditionalPageConfig {
 	private $before_content;
 	private $after_content;
 	private $title_suffix;
+	private $resources_root;
 
-	public function __construct() {
+	public function __construct($resources_root) {
 		$this->pre_heads = Array();
 		$this->post_heads = Array();
 		$this->before_content = Array();
 		$this->after_content = Array();
 		$this->title_suffix = null;
+		$this->resources_root = $resources_root;
 	}
 
 	public function get_pre_heads() {
@@ -34,6 +36,11 @@ class AditionalPageConfig {
 	public function get_title_suffix() {
 		return $this->title_suffix;
 	}
+
+	public function get_resources_root() {
+		return $this->resources_root;
+	}
+
 
 	public function add_pre_head($head) {
 		$this->pre_heads[] = $head;

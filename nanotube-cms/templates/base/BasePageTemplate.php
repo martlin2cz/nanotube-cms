@@ -15,8 +15,8 @@ abstract class BasePageTemplate implements AbstractPageTemplate {
 
 	abstract public function get_links_format();
 	
-	public function render_template() {
-		$apc = new AditionalPageConfig();
+	public function render_template($resources_path) {
+		$apc = new AditionalPageConfig($resources_path);
 
 		$this->prepare_them($apc);
 		$this->render_them($apc);

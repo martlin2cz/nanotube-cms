@@ -6,9 +6,14 @@
 interface AbstractPageTemplate {
 
 	/**
-	 * Renders page into html document
+	 * Renders page into html document.
 	 * */
-	public function render_template();
+	public function render_template($resources_root);
+
+	/**
+	 * Puts given site into page and then renders.
+	 * */
+	public function render_site($site, $resources_root);
 
 }
 

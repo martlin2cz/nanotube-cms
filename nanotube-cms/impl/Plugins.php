@@ -96,6 +96,9 @@ class Plugins {
 		return self::$current_apc;
 	}
 
+	static public function resource_of_plugin($category, $name, $resource_path) {
+		return "nanotube-cms/plugins/" . $category . "/" . $name . "/" . $resource_path;
+	}
 }
 
 Plugins::_static_init();

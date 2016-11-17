@@ -37,23 +37,23 @@ class BasicPhotogalleryPlugin extends AbstractPlugin {
 			<a href="<?= $image ?>"><img src="<?= $image ?>" alt="image" style="width: 25%;"></a>
 		<?php } ?>
 	</div>
+
 	<?php
-		//if ($this->get_instances_count() == 0) {	
-			$apc->add_pre_head("<!- Basic Photogallery -->\n"
+		if (!$this->yet_on_site()) {	
+			$apc->add_pre_head("\n"
+				. "<!- Basic Photogallery -->\n"
 				. "<script src=\"https://code.jquery.com/jquery-3.1.1.min.js\"></script>\n"
-				. "<link href=\"css/lightgallery/lightgallery.css\" rel=\"stylesheet\">\n"
-				. "<script src=\"js/lightgallery/lightgallery.js\"></script>\n"
-				. "<script src=\"js/lightgallery/lg-fullscreen.js\"></script>\n"
-				. "<script src=\"js/lightgallery/lg-pager.js\"></script>\n"
+				. "<link href=\"" . $this->resource("lightGallery/css/lightgallery.min.css") . "\" rel=\"stylesheet\">\n"
+				. "<script src=\"" . $this->resource("lightGallery/js/lightgallery.js") . "\"></script>\n"
+				. "<script src=\"" . $this->resource("lightGallery/js/lg-fullscreen.js") . "\"></script>\n"
+				. "<script src=\"" . $this->resource("lightGallery/js/lg-pager.js") . "\"></script>\n"
 				. "<!-- end of Basic Photogalerry -->\n");
-				
-				//FIXME EEE!!!!
-				?><script> $('ready', function() {
-					var config = { download: false };
-					$('.gallery').each(function(i) { 	$(this).lightGallery(config); });
-				});
-				</script><?php
-		//}
+			$apc->add_post_head("\n"
+				. "<script> $('ready', function() {\n"
+				.	"	var config = { download: false };\n"
+				.	"	$('.gallery').each(function(i) { 	$(this).lightGallery(config); });\n"
+				.	"}); </script>\n");
+		}
 	}
 
 	static public function put($images) {

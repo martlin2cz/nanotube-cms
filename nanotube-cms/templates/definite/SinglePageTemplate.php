@@ -10,12 +10,12 @@ require_once(__DIR__ . '/../../impl/database/Sites.php');
 abstract class SinglePageTemplate extends PreRenderingPageTemplate {
 	
 	private $config;
-	private $sites;
+	private $sites_spec;
 
 	public function __construct($config) {
 		parent::__construct();
 		$this->config = $config;
-		$this->sites = Sites::get();
+		$this->sites_spec = Sites::get();
 	}
 
 	public function get_links_format() {
@@ -27,13 +27,22 @@ abstract class SinglePageTemplate extends PreRenderingPageTemplate {
 	}
 	
 	public function get_sites() {
-		return $this->sites->all_sites();
+		if (get_class($this->sites_spec) == 'Sites') {
+			return $this->sites_spec->all_sites();
+		} else if (get_class($this->sites_spec) == 'Site') {
+			return Array($this->sites_spec);
+		} else {
+			return null;
+		}
 	}
 
 	protected function do_head($apc) { ?>
 		<title><?= $this->get_title() ?><?= $apc->get_title_suffix() ?></title>
 		<!--TODO meta tags, styles, ... -->		
-		
+    <?php if (!is_null($apc->get_resources_root())) { ?>                                                                               
+      <base href="<?= $apc->get_resources_root() ?>" >
+    <?php } ?>
+
 		<?php Tools::render_array($apc->get_pre_heads()) ?>
 	
 		<link rel="stylesheet" href="css/styles.css" type="text/css" />
@@ -46,6 +55,10 @@ abstract class SinglePageTemplate extends PreRenderingPageTemplate {
 		Tools::run_html_with_php($apc, $site->get_content());		
 	}
 
+	public function render_site($site, $resources_root) {
+		$this->sites_spec = $site;
+		$this->render_template($resources_root);	
+	}
 }
 
 ?>

@@ -87,6 +87,12 @@ abstract class AbstractPlugin {
 		return $this->category . "/" . $this->id . "/" . PLUGIN_SETTINGS_DIR_NAME;
 	}
 
+	/**
+	 * Returns path to the plugin's specified resource. The path is relative to web root.
+	 * */
+	protected function resource($resource_path) {
+		return Plugins::resource_of_plugin($this->category, $this->id, $resource_path);
+	}
 
 	/**
 	 * Returns current number of usages of this plugin.
@@ -94,6 +100,15 @@ abstract class AbstractPlugin {
 	protected function get_instances_count() {
 		return $this->instances_count;
 	}
+
+	/**
+	 * Returns true if this plugin have been yet used on the page.
+	 * */
+	protected function yet_on_site() {
+		return $this->get_instances_count() > 0;
+	}
+
+
 	/**
 	 * Renders this plugin into page. Can be specified optional params.
 	 * */

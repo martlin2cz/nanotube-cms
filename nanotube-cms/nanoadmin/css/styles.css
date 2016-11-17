@@ -270,4 +270,5 @@ table.with-no-cells-border td {
 	vertical-align: middle;
 	background-color: #C0C0C0;
 	padding: 0.5eM;
+	cursor: pointer;
 }

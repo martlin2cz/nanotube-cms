@@ -1,5 +1,7 @@
 <?php require_once(__DIR__ . '/../impl/NAtemplate.php'); ?>                                                                            
-<?php NAtemplate::before_content('../', 'Create/Update site', true, ''); ?>
+<?php NAtemplate::before_content('../', 'Create/Update site', true, 
+	'<script type="text/javascript" src="js/scripts.js"></script>'
+); ?>
 <?php
 
 require_once(__DIR__ . '/../../impl/database/Sites.php');
@@ -60,39 +62,40 @@ function edit_or_new_text($edit_text, $new_text) {
 					<span class="note">(making site not visible will hide it from all menus and lists of sites)</span>
 
 					<label>Text (HTML)</label>
-					<textarea name="content"><?= $site->get_content() ?></textarea>
+					<textarea name="content" id="content-textarea"><?= $site->get_content() ?></textarea>
 				
 					<div class="buttons-panel">
-						<input type="submit" value="<?= edit_or_new_text('Update', 'Create') ?>">
+						<input type="submit" value="<?= edit_or_new_text('Update', 'Create') ?>" onclick="doSave(this)">
 						<input type="reset" value="Revert">
+						<input type="submit" value="Preview" formaction="actions/preview-site.php" onclick="doPreview(this)">
 					</div>
 				</fieldset>
 			</form>		
 
 	<h2>HTML shorthand</h2>
 	<section>
-		<p>Line wraps and empty lines are ignored. Structure text into paragraphs by wrapping by <code>&lt;p&gt;...&lt;/p&gt;</code>. Do not use <code>&lt;br&gt;</code> to wrap lines!</p>
-		<pre class="html-shorthand-item">&lt;em&gt;<em>emphatise by italics</em>&lt;/em&gt;</pre>
-		<pre class="html-shorthand-item">&lt;strong&gt;<strong>empthatise by bold font</strong>&lt;/strong&gt;</pre>
-		<pre class="html-shorthand-item">&lt;img src="<em>url of image</em>" alt="<em>description</em>"&gt;</pre>
-		<pre class="html-shorthand-item">&lt;a href="<em>url adress</em>"&gt;<a href="#">text of link</a>&lt;/a&gt;</pre>
-		<pre class="html-shorthand-item">&lt;p&gt;
+		<p>Line wraps and empty lines are ignored. Structure text into paragraphs by wrapping by <code>&lt;p&gt;...&lt;/p&gt;</code>. Do not use <code>&lt;br&gt;</code> to wrap lines! Click to one to clone into editor.</p>
+		<pre class="html-shorthand-item" onclick="toEditor(this)">&lt;em&gt;<em>emphatise by italics</em>&lt;/em&gt;</pre>
+		<pre class="html-shorthand-item" onclick="toEditor(this)">&lt;strong&gt;<strong>empthatise by bold font</strong>&lt;/strong&gt;</pre>
+		<pre class="html-shorthand-item" onclick="toEditor(this)">&lt;img src="<em>url of image</em>" alt="<em>description</em>"&gt;</pre>
+		<pre class="html-shorthand-item" onclick="toEditor(this)">&lt;a href="<em>url adress</em>"&gt;<a href="#">text of link</a>&lt;/a&gt;</pre>
+		<pre class="html-shorthand-item" onclick="toEditor(this)">&lt;p&gt;
 Some really very long text
 inside of the paragraph.
 &lt;/p&gt;</pre>
-		<pre class="html-shorthand-item">&lt;div class="centered"&gt;
+		<pre class="html-shorthand-item" onclick="toEditor(this)">&lt;div class="centered"&gt;
 &larr; This is centered &rarr;
 &lt;/div&gt;</pre>
 	
-		<pre class="html-shorthand-item">&lt;ul&gt;
+		<pre class="html-shorthand-item" onclick="toEditor(this)">&lt;ul&gt;
   &lt;li&gt; &bull; first bullet &lt;/li&gt;
   &lt;li&gt; &bull; second bullet &lt;/li&gt;
 &lt;/ul&gt;</pre>
-		<pre class="html-shorthand-item">&lt;ol&gt;
+		<pre class="html-shorthand-item" onclick="toEditor(this)">&lt;ol&gt;
   &lt;li&gt; 1. bullet &lt;/li&gt;
   &lt;li&gt; 2. bullet &lt;/li&gt;
 &lt;/ol&gt;</pre>
-		<pre class="html-shorthand-item">&lt;table&gt;
+		<pre class="html-shorthand-item" onclick="toEditor(this)">&lt;table&gt;
   &lt;tr&gt;  &lt;td&gt; <strong>cell A1</strong> &lt;/td&gt;  &lt;td&gt; <strong>cell B1</strong> &lt;/td&gt;  &lt;/tr&gt;
   &lt;tr&gt;  &lt;td&gt; <strong>cell A2</strong> &lt;/td&gt;  &lt;td&gt; <strong>cell B2</strong> &lt;/td&gt;  &lt;/tr&gt;
 &lt;/table&gt;</pre>
