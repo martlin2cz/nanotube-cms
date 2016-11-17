@@ -100,9 +100,7 @@ class Configs {
 			'mysql_user' => 			$config->get_mysql_user(),
 			'mysql_password' => 	$config->get_mysql_password(),
 			'na_password' => 			$config->get_na_password(),
-			'na_password_salt' => $config->get_na_password_salt(),
-			'links_format' => 		$config->get_links_format()
-	
+			'na_password_salt' => $config->get_na_password_salt()
 		);
 
 		$db = new FileDatabase(CONFIG_FILE_PATH);

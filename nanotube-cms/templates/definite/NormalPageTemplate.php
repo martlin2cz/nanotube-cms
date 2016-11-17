@@ -12,8 +12,13 @@ abstract class NormalPageTemplate extends PreRenderingPageTemplate {
 	private $site;
 
 	public function __construct($config) {
+		parent::__construct();
 		$this->config = $config;
 		$this->site = Tools::current_site_by_url();
+	}
+
+	public function get_links_format() {
+		return "?" . SITE_ID_GET_PARAM_NAME . "=" . LINKS_FORMAT_PATTERNER;
 	}
 
 	public function get_config() {
@@ -27,9 +32,10 @@ abstract class NormalPageTemplate extends PreRenderingPageTemplate {
 	protected function do_head($apc) { ?>
 		<title><?= $this->get_title() ?><?= $apc->get_title_suffix() ?></title>
 		<!--TODO meta tags, styles, ... -->		
+		<?= Tools::render_array($apc->get_pre_heads()) ?>
 		<link rel="stylesheet" href="css/styles.css" type="text/css" />
 		<script type="text/javascript" src="js/scripts.js"></script>
-		<?= Tools::render_array($apc->get_heads()) ?>
+		<?= Tools::render_array($apc->get_post_heads()) ?>
 		<?php $this->add_specific_headers() ?>
 	<?php }
 

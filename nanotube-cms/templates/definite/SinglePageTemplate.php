@@ -13,8 +13,13 @@ abstract class SinglePageTemplate extends PreRenderingPageTemplate {
 	private $sites;
 
 	public function __construct($config) {
+		parent::__construct();
 		$this->config = $config;
 		$this->sites = Sites::get();
+	}
+
+	public function get_links_format() {
+		return "#" . LINKS_FORMAT_PATTERNER;
 	}
 
 	public function get_config() {
@@ -28,9 +33,13 @@ abstract class SinglePageTemplate extends PreRenderingPageTemplate {
 	protected function do_head($apc) { ?>
 		<title><?= $this->get_title() ?><?= $apc->get_title_suffix() ?></title>
 		<!--TODO meta tags, styles, ... -->		
+		
+		<?php Tools::render_array($apc->get_pre_heads()) ?>
+	
 		<link rel="stylesheet" href="css/styles.css" type="text/css" />
 		<script type="text/javascript" src="js/scripts.js"></script>
-		<?= $apc->get_heads() ?>
+		
+		<?php Tools::render_array($apc->get_post_heads()); ?>
 	<?php }
 
 	protected function do_site_content($apc, $site) {

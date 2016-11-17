@@ -1,41 +1,21 @@
-<!DOCTYPE html>
-<html>
-<!--
+<?php
+//setup error reporting (for sure ...)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-Just redirects to one of _sample designs specified bellow
+//include required files
+require_once(__DIR__ . '/templates/MyTemplate.php');
 
--->
-	<head>
-		<title>Redirecting ...</title>
-	</head>
-	<body>
-<script>
-function rest_of_url() {
-	var url = location.href;
+require_once(__DIR__ . '/nanotube-cms/impl/database/Configs.php');
+require_once(__DIR__ . '/nanotube-cms/impl/Tools.php');
 
-	var index_of_ask = url.indexOf('?');
-	var index_of_hash = url.indexOf('#');
+//initalize web configuration
+$config = Configs::get()->get_config();
 
-	if (index_of_ask > -1) {
-		return url.substr(index_of_ask);
-	} else if (index_of_hash > -1) {
-		return url.substr(index_of_hash);
-	} else {
-		return "";
-	}
-}
+//setup html head and body templates
+$template = new MyTemplate($config, "../../");
 
-//uncomment required sample design
-//be sure you have correctly configured $config->links_format
-
-//var to = "_samples/basic-web/";
-var to = "_samples/basic-web-with-sidebar/";
-//var to = "_samples/single-paged-web/";
-//var to = "_samples/primitive-web/";
-
-
-var rest = rest_of_url();
-location.assign(to + rest);
-		</script>
-	</body>
-</html>
+//and finaly render!
+$template->render_template();
+?>

@@ -5,6 +5,9 @@ require_once(__DIR__ . '/database/Sites.php');
 
 define("SITE_ID_GET_PARAM_NAME", "site");
 define("LINKS_FORMAT_PATTERNER", "SITE_ID");
+define("TEMPLATES_DIR", "templates/");
+define("TEMPLATE_CLASS_NAME", "MyTemplate");
+
 
 
 class Tools {
@@ -17,6 +20,7 @@ class Tools {
 	static public function _static_init() {
 		self::$config = Configs::get()->get_config();
 		self::$sites = Sites::get();
+		self::include_template_file();
 	}
 
 
@@ -35,7 +39,7 @@ class Tools {
 		try {
 			eval($wrapped_php); // !!!
 		} catch (Exception $exception) {
-			echo "\n<div class='nm-error'>" . $exception . "</div>\n"; //TODO error handling
+			echo "\n<section class='nt-error'>" . $exception . "</section>\n"; //TODO error handling
 		}
 	}
 
@@ -82,8 +86,22 @@ class Tools {
 		}
 	}
 
+	static private function include_template_file() {
+		$root = __DIR__ . "/../../";
+		$file = $root . TEMPLATES_DIR . TEMPLATE_CLASS_NAME . ".php";
+		require_once($file);
+	}
+
+	static public function get_template() {
+		$class_name = TEMPLATE_CLASS_NAME;
+		$instance = new $class_name(self::$config);
+
+		return $instance;
+	}
+
 	static public function make_link($site_id) {
-		$format = self::$config->get_links_format();
+		$template = self::get_template();
+		$format = $template->get_links_format();
 		return str_replace(LINKS_FORMAT_PATTERNER, $site_id, $format);
 	}
 

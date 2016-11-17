@@ -4,9 +4,9 @@ require_once(__DIR__ . '/SinglePageTemplate.php');
 
 class StandartSPT extends SinglePageTemplate {
 
-	public function __construct($config) {
-		parent::__construct($config);
-	}
+  public function __construct($config) {                                                                                
+    parent::__construct($config);
+  }
 	
 	protected function get_title() {
 		return $this->get_config()->get_web_title();

@@ -39,7 +39,7 @@ class BasicPhotogalleryPlugin extends AbstractPlugin {
 	</div>
 	<?php
 		//if ($this->get_instances_count() == 0) {	
-			$apc->add_head("<!- Basic Photogallery -->\n"
+			$apc->add_pre_head("<!- Basic Photogallery -->\n"
 				. "<script src=\"https://code.jquery.com/jquery-3.1.1.min.js\"></script>\n"
 				. "<link href=\"css/lightgallery/lightgallery.css\" rel=\"stylesheet\">\n"
 				. "<script src=\"js/lightgallery/lightgallery.js\"></script>\n"

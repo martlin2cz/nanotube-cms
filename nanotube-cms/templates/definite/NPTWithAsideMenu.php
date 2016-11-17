@@ -8,10 +8,10 @@ require_once(__DIR__ . '/../../impl/Tools.php');
  * */
 class NPTWithAsideMenu extends NormalPageTemplate {
 
-	public function __construct($config) {
+  public function __construct($config) {
 		parent::__construct($config);
 	}
-	
+
 	protected function get_title() {
 		return $this->get_page_title($this->get_site()->get_title(), $this->get_config()->get_web_title());
 	}

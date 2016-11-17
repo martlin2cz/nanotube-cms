@@ -1,20 +1,26 @@
 <?php
 
 class AditionalPageConfig {
-	private $heads;
+	private $pre_heads;
+	private $post_heads;
 	private $before_content;
 	private $after_content;
 	private $title_suffix;
 
 	public function __construct() {
-		$this->heads = Array();
+		$this->pre_heads = Array();
+		$this->post_heads = Array();
 		$this->before_content = Array();
 		$this->after_content = Array();
 		$this->title_suffix = null;
 	}
 
-	public function get_heads() {
-		return $this->heads;
+	public function get_pre_heads() {
+		return $this->pre_heads;
+	}
+	
+	public function get_post_heads() {
+		return $this->post_heads;
 	}
 
 	public function get_before_content() {
@@ -29,8 +35,12 @@ class AditionalPageConfig {
 		return $this->title_suffix;
 	}
 
-	public function add_head($head) {
-		$this->heads[] = $head;
+	public function add_pre_head($head) {
+		$this->pre_heads[] = $head;
+	}
+
+	public function add_post_head($head) {
+		$this->post_heads[] = $head;
 	}
 	
 	public function add_before_content($before) {
@@ -46,7 +56,7 @@ class AditionalPageConfig {
 	}
 	
 	public function __toString() {
-		return "AditionalPageConfig, heads=" . count($this->heads) . ", before_content="   . count($this->before_content) . ", aftere_content=". count($this->after_content);
+		return "AditionalPageConfig: ...";
 	}
 }
 

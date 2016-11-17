@@ -17,7 +17,6 @@ $web_description = WebTools::require_posted_string('web-description', true);
 $web_keywords = WebTools::require_posted_string('web-keywords', true);
 $na_password = WebTools::require_posted_password('na-password', true);
 $na_password_confirm = WebTools::require_posted_password('na-password-confirm', true);
-$links_format = WebTools::require_posted_string('links-format', false);
 
 ActionTemplate::check_errors();
 
@@ -29,7 +28,6 @@ $config = $configs->get_config();
 $config->set_web_title($web_title);
 $config->set_web_description($web_description);
 $config->set_web_keywords($web_keywords);
-$config->set_links_format($links_format);
 
 if ($na_password != '') {
 	if ($na_password != $na_password_confirm) {

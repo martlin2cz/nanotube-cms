@@ -9,9 +9,15 @@ require_once(__DIR__ . '/../../impl/dataobj/AditionalPageConfig.php');
  * */
 abstract class BasePageTemplate implements AbstractPageTemplate {
 
+
+	public function __construct() {
+	}
+
+	abstract public function get_links_format();
 	
 	public function render_template() {
 		$apc = new AditionalPageConfig();
+
 		$this->prepare_them($apc);
 		$this->render_them($apc);
 	}

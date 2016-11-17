@@ -25,11 +25,7 @@ $config = $configs->get_config();
 
 
 				<fieldset>
-					<legend><h2>Additional config</h2></legend>
-
-					<label>Links format</label>
-					<input type="text" name="links-format" value="<?= $config->get_links_format() ?>">
-					<span class="note">use <code>SITE_ID</code> to pass id of site; examples: <code>?page=SITE_ID</code> or <code>#SITE_ID</code> (consult template)</span>
+					<legend><h2>Nanoadmin</h2></legend>
 
 					<label>nanoadmin's password</label>
 					<input type="password" name="na-password">

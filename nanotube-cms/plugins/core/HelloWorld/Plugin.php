@@ -34,7 +34,9 @@ class HelloWorldPlugin extends AbstractPlugin {
 
 		echo $text;	//here finally outputs the text
 		
-		$apc->add_head('<!-- this head comment was added by Hello World plugin -->');
+		$apc->add_pre_head('<!-- this head comment was added by Hello World plugin (before others headers) -->');
+		$apc->add_post_head('<!-- this head comment was added by Hello World plugin (after others headers) -->');
+
 		$apc->add_before_content('<!-- this body starting comment was added by Hello World plugin -->');
 		$apc->add_after_content('<!-- this body ending comment was added by Hello World plugin -->');
 		$apc->set_title_suffix(', with Hello World plugin!');

@@ -11,6 +11,9 @@ abstract class PreRenderingPageTemplate extends BasePageTemplate {
 
 	private $rendered_body;
 
+	public function __construct() {
+		parent::__construct();
+	}
 
 	public function prepare_head($apc) {
 		//nothing

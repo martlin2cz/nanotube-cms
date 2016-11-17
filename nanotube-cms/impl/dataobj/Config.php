@@ -4,7 +4,7 @@ class Config {
 	private $web_title;
 	private $web_description;
 	private $web_keywords;
-	
+
 	private $mysql_server;
 	private $mysql_database;
 	private $mysql_user;
@@ -12,7 +12,6 @@ class Config {
 
 	private $na_password;
 	private $na_password_salt;
-	private $links_format;
 
 	public function __construct() {
 	}
@@ -55,10 +54,6 @@ class Config {
 		return $this->na_password_salt;
 	}
 
-	public function get_links_format() {
-		return $this->links_format;
-	}
-
 
 	// setters
 
@@ -98,10 +93,6 @@ class Config {
 		$this->na_password_salt = $na_password_salt;
 	}
 
-	public function set_links_format($links_format) {
-		$this->links_format = $links_format;
-	}
-	
 	// others
 	
 	public function __toString() {
