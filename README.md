@@ -40,26 +40,26 @@ The configuration of whole web is centralized and stored in one file and done in
 
 When everything fails, the nanotube allows you to log in into nanoadmin using built-in ('superuser') nanoadmin. Because of huge security risk, this user (in fact only his password, another nanoadmin correctly sits in database) is avaible only when database is offline.
 
-## Samples
+## Usage
 
-See directory `_samples` to see how your web can look like. See dictory `_about` to see some graphics (logos and screenshots).
+### Install nanotube
+To install nanotube clone into required folder on your server. Then, open in browser adress `<ROOT>/nanotube-cms/nanoadmin/` (where `<ROOT>` is url of your web). Log in using the nanoadmin (u: nanoadmin, p: his\_nano\_password) and open site `<ROOT>/nanotube-cms/nanoadmin/instalation/`. Then follow the instructions. After installation you should open Web config site and change nanoadmin's password.
 
-## Installation
-To install nanotube clone into required folder on your server. Then, open in browser adress `ROOT/nanotube-cms/nanoadmin/` (where ROOT is url of your app). Log in using the nanoadmin (u: nanoadmin, p: his\_nano\_password) and open site `ROOT/nanotube-cms/nanoadmin/instalation/`. Then follow the instructions. After installation you should open Web config site and 1) specify links format and 2) change nanoadmin's password.
+### Create web
 
-### Create template
+Easiest way how to create your web is to clone provided sample webapp and modify. Copy contents of folder `_sample_web` into your `<ROOT>/` folder. Take a look into `templates` folder. Try rename (move) some of template files there to `MyTemplate.php` to became active. Choose one which fits your requirements the most or particullary modify it. Also, setup resources (styles, scripts and images).
 
-Then choose one of the samples (recomended), copy its directory content into ROOT and - you can start to design your web! Hopefully you would only need to modify css styles. In the other case you would have to rub the Template class. 
+### Web ready, add content
 
-When complete, you should delete everything starting with `_` (`$ rm -r _*`) from ROOT.
+When complete, you should delete everything starting with `_` (`$ rm -r _*`) from `<ROOT>` and your web is ready. You can log in into nanoadmin (`<ROOT>/nanotube-cms/nanoadmin/`) and add some sites. 
 
 ### Implement plugin
 
-Go to directory `ROOT/nanotube-cms/plugins/core/HelloWorld` and take a look how plugins in nanotube works. Clone this directory (you should create new category directory, instead of creating new plugin as core plugin) and - do as you want.
+Go to directory `<ROOT>/nanotube-cms/plugins/core/HelloWorld` and take a look how plugins in nanotube works. Clone this directory (you should create new category directory, instead of creating new plugin as core plugin) and - do as you want.
 
 ### Updating
 
-If new update is done (I don't think this is gonna ever happen), just update the `ROOT/nanoadmin-cms/` directory. And also, check your template and config file.
+If new update of nanotube is released (I don't think this is gonna ever happen), just update the `<ROOT>/nanoadmin-cms/` directory. And also, check your template and config file.
 
 ### Uninstall
 
