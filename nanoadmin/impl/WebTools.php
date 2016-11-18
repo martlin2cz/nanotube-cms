@@ -11,6 +11,14 @@ class WebTools {
 		return date('M j Y, G:i:s', $date);
 	}
 
+	static public function format_date_to_input($date) {
+		return date('Y-m-j', $date);
+	}
+
+	static public function format_only_date($date) {
+		return date('M j Y', $date);
+	}
+	
 	static public function require_posted_id($key_name, $allow_empty) {
 		$value = self::require_value($_POST, $key_name, false);
 		return self::require_id($key_name, $value, $allow_empty);
@@ -25,6 +33,12 @@ class WebTools {
 	static public function require_posted_password($key_name, $allow_empty) {
 		$value = self::require_value($_POST, $key_name, false);
 		return self::require_password($key_name, $value, $allow_empty);
+	}
+
+
+	static public function require_posted_date($key_name, $allow_empty) {
+		$value = self::require_value($_POST, $key_name, false);
+		return self::require_date($key_name, $value, $allow_empty);
 	}
 
 
@@ -77,6 +91,16 @@ class WebTools {
 
 		return $value;
 	}
+
+	static private function require_date($key_name, $value, $allow_empty) {
+		if (!$allow_empty && $value == '') {
+			Errors::add("Params error", "Param $key_name must be date", false);
+			return null;
+		}
+
+		return strtotime($value);
+	}
+
 
 	static private function require_password($key_name, $value, $allow_empty) {
 		if ($allow_empty && $value == '') {

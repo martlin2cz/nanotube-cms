@@ -1,0 +1,23 @@
+.events-calendar {
+	list-style: square;
+}
+
+.event {
+	padding: 0.5eM;
+}
+
+.event-date {
+	font-weight: bold;
+}
+
+.event-when {
+
+}
+
+.event-title {
+	font-weight: bold;
+}
+
+.event-description {
+
+}
