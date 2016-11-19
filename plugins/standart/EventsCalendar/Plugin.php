@@ -38,7 +38,6 @@ class EventsCalendarPlugin extends AbstractPlugin {
 		return $this->events->uninstall();
 	}
 	public function render_plugin_content($config, $apc, $args) { ?>
-		//TODO if not yet on site, add CSS
 		<?php 
 			if (!$this->yet_on_site()) {
 				$apc->add_post_head(

@@ -5,7 +5,6 @@ require_once(__DIR__ . '/../database/FileDatabase.php');
 require_once(__DIR__ . '/../Errors.php');
 require_once(__DIR__ . '/../Passwording.php');
 
-
 define("CONFIG_FILE_PATH", "config/nanoconfig.php");
 
 class Configs {
@@ -118,7 +117,5 @@ class Configs {
 }
 
 Configs::_static_init();
-
-
 
 ?>

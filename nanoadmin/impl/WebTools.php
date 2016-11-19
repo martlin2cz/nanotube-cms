@@ -18,6 +18,14 @@ class WebTools {
 	static public function format_only_date($date) {
 		return date('M j Y', $date);
 	}
+
+	static public function require_getted_or_not($key_name) {
+		if (isset($_GET) && isset($_GET[$key_name])) {
+			return $_GET[$key_name];
+		} else {
+			return null;
+		}
+	}
 	
 	static public function require_posted_id($key_name, $allow_empty) {
 		$value = self::require_value($_POST, $key_name, false);
@@ -30,6 +38,12 @@ class WebTools {
 		return self::require_string($key_name, $value, $allow_empty);
 	}
 
+	static public function require_posted_number($key_name, $min, $max) {
+		$value = self::require_value($_POST, $key_name, false);
+		return self::require_number($key_name, $value, $min, $max);
+	}
+
+	
 	static public function require_posted_password($key_name, $allow_empty) {
 		$value = self::require_value($_POST, $key_name, false);
 		return self::require_password($key_name, $value, $allow_empty);
@@ -92,6 +106,20 @@ class WebTools {
 		return $value;
 	}
 
+	static private function require_number($key_name, $value, $min, $max) {
+		if ($value == '') {
+			Errors::add("Params error", "Param $key_name must be (nonepty) number", false);
+			return null;
+		}
+
+		if ($value < $min || $value > $max) {
+			Errors::add("Params error", "Param $key_name must be greater than $min and less than $max", false);
+			return null;
+		}
+
+		return $value;
+	}
+
 	static private function require_date($key_name, $value, $allow_empty) {
 		if (!$allow_empty && $value == '') {
 			Errors::add("Params error", "Param $key_name must be date", false);
@@ -120,3 +148,4 @@ class WebTools {
 
 
 }
+?>

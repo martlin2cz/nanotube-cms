@@ -35,9 +35,11 @@ $config->set_web_description($web_description);
 $config->set_web_keywords($web_keywords);
 
 // save changed
-$configs->save_config($config);
+$succ = $configs->save_config($config);
 
 ActionTemplate::check_errors();
-ActionTemplate::success("../");
+if ($succ) {
+	ActionTemplate::success("../");
+}
 ?>
 

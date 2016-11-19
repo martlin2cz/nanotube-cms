@@ -1,4 +1,5 @@
 <?php
+
 require_once(__DIR__. '/../dataobj/Admin.php');
 require_once(__DIR__. '/Configs.php');
 require_once(__DIR__. '/MysqlDatabase.php');

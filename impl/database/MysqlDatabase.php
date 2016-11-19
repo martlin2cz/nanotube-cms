@@ -45,7 +45,7 @@ class MysqlDatabase {
 	}
 
 	private function invoke_sql($sql) {
-	//	echo "<!-- [$sql] -->\n";//XXX debug!
+//		echo "<!-- [$sql] -->\n";//XXX debug!
 		return $this->connection->query($sql); 
 	}
 
@@ -111,7 +111,7 @@ class MysqlDatabase {
 
 		$result = $this->invoke_sql($sql);
 		$this->check_error("loading data from table $table");
-		if ($result) {
+		if (!($result === false)) {
 			return $this->result_to_array($result);
 		} else {
 			return null;
@@ -129,6 +129,10 @@ class MysqlDatabase {
 	}
 
 	private function result_to_array($result) {
+		if (is_null($result)) {
+			return null;
+		}
+
 		$array = Array();
 
 		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -154,3 +158,4 @@ class MysqlDatabase {
 
 
 }
+?>

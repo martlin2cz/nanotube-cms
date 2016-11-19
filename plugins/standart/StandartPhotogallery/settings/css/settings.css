@@ -1,0 +1,10 @@
+.image-panel {
+	display: inline-block;
+	background-color: #C0C0C0;
+	
+	min-height: 5eM;
+	vertical-align: middle;
+
+	padding: 1%;
+	margin: 1%;
+}

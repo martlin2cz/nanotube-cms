@@ -62,7 +62,7 @@ function edit_or_new_text($edit_text, $new_text) {
 					<span class="note">(making site not visible will hide it from all menus and lists of sites)</span>
 
 					<label>Text (HTML)</label>
-					<textarea name="content" id="content-textarea"><?= $site->get_content() ?></textarea>
+					<textarea name="content" id="content-textarea" class="big-textarea"><?= $site->get_content() ?></textarea>
 				
 					<div class="buttons-panel">
 						<input type="submit" value="<?= edit_or_new_text('Update', 'Create') ?>" onclick="doSave(this)">
