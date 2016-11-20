@@ -8,7 +8,7 @@ define("PASSWORD_REGEX", '/[a-zA-Z0-9\\-\\!\\?_\\.]+/');
 class WebTools {
 
 	static public function format_date($date) {
-		return date('M j Y, G:i:s', $date);
+		return date('j.m.Y, G:i:s', $date);
 	}
 
 	static public function format_date_to_input($date) {
@@ -16,7 +16,7 @@ class WebTools {
 	}
 
 	static public function format_only_date($date) {
-		return date('M j Y', $date);
+		return date('j. m. Y', $date);
 	}
 
 	static public function require_getted_or_not($key_name) {

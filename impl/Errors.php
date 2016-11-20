@@ -17,7 +17,8 @@ class Errors {
 	}
 
 	static public function is_some_error() {
-		return !empty(self::get_current_errors());
+		 $errors = self::get_current_errors();
+		 return !empty($errors);
 	}
 
 

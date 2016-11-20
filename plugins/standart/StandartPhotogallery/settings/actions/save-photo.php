@@ -2,7 +2,7 @@
 <?php ActionTemplate::before_start('../../../../../nanoadmin/', true); ?>
 
 <?php
-require_once(__DIR__ . '/../../../../../impl/LoggingIn.php');
+require_once(__DIR__ . '/../../../../../impl/LogingIn.php');
 require_once(__DIR__ . '/../../../../../nanoadmin/impl/WebTools.php');
 require_once(__DIR__ . '/../../../../../utils/FilesManager.php');
 require_once(__DIR__ . '/../../database/Photos.php');
