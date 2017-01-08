@@ -114,7 +114,7 @@ abstract class AbstractPlugin {
 	 * */
 	public function render_plugin() {
 		if ($this->get_status() == PLUGIN_STATUS_UNINSTALLED) {
-			?><section class="error">Plugin <?php $this->get_name() ?> not installed.</div><?php
+			?><div class="error">Plugin <?php $this->get_name() ?> not installed.</div><?php
 		} else {
 			$apc = Plugins::get_current_apc();
 			$args = func_get_args();

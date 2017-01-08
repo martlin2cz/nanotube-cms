@@ -41,7 +41,7 @@ class EventsCalendarPlugin extends AbstractPlugin {
 		<?php 
 			if (!$this->yet_on_site()) {
 				$apc->add_post_head(
-					'<link rel="stylesheet" href="' .  $this->resource('css/default-styles.css') . '" type="text/css"></style>'
+					'<link rel="stylesheet" href="' .  $this->resource('css/default-styles.css') . '" type="text/css">'
 				);	
 			}
 		?>
@@ -55,7 +55,7 @@ class EventsCalendarPlugin extends AbstractPlugin {
 				<div class="event-description"><?= $event->get_description() ?></div>
 			</li>
 		<?php } ?>
-		<ol>
+		</ol>
 	<?php }
 
 	static public function put($only_future) {

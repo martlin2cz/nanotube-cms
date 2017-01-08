@@ -31,16 +31,24 @@ abstract class NormalPageTemplate extends PreRenderingPageTemplate {
 
 	protected function do_head($apc) { ?>
 		<title><?= $this->get_title() ?><?= $apc->get_title_suffix() ?></title>
-		<!--TODO meta tags, styles, ... -->	
 		
 		<?php if (!is_null($apc->get_resources_root())) { ?>
 			<base href="<?= $apc->get_resources_root() ?>">
 		<?php } ?>
+
+		<meta charset="UTF-8">
+		<meta name="description" content="<?= $this->config->get_web_description() ?>">
+		<meta name="keywords" content="<?= $this->config->get_web_keywords() ?>">
+		<meta name="generator" content="nanotube-cms">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<?= Tools::render_array($apc->get_pre_heads()) ?>
+
 		<link rel="stylesheet" href="css/styles.css" type="text/css" />
 		<script type="text/javascript" src="js/scripts.js"></script>
+
 		<?= Tools::render_array($apc->get_post_heads()) ?>
+
 		<?php $this->add_specific_headers() ?>
 	<?php }
 

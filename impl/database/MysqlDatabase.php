@@ -45,7 +45,7 @@ class MysqlDatabase {
 	}
 
 	private function invoke_sql($sql) {
-//		echo "<!-- [$sql] -->\n";//XXX debug!
+		//echo "<!-- [$sql] -->\n";//XXX debug!
 		return $this->connection->query($sql); 
 	}
 

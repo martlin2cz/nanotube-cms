@@ -39,7 +39,7 @@ class Tools {
 		try {
 			eval($wrapped_php); // !!!
 		} catch (Exception $exception) {
-			echo "\n<section class='nt-error'>" . $exception . "</section>\n"; //TODO error handling
+			echo "\n<div class='nt-error'>" . $exception . "</div>\n"; //TODO error handling
 		}
 	}
 

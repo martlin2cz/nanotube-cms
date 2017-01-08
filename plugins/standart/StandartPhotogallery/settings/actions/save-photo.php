@@ -45,7 +45,7 @@ if ($is_edit) {
 	if ($photo) {
 		Errors::add("Params error", "Photo $file_name alredy exists.", false);
 	}
-	$admin = LoggingIn::get()->logged_admin();
+	$admin = LogingIn::get()->logged_admin();
 	$photo = new Photo($file_name, "", "", NULL, '', time(), $admin->get_username(), 0, 0, $gallery_id);
 }
 
