@@ -28,6 +28,7 @@ class NAtemplate {
 	static private function put_before_content_html($title, $require_login, $additional_heads) { ?><!DOCTYPE html>
 	<html>
 		<head>	
+			<meta charset="UTF-8">
 			<title><?= $title ?> | nanoadmin</title>
 			<link rel="stylesheet" href="<?= self::$path_to_root ?>css/styles.css" type="text/css" />
 			<?= $additional_heads ?>
