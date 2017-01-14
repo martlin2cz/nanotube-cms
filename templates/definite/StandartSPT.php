@@ -12,6 +12,10 @@ class StandartSPT extends SinglePageTemplate {
 		return $this->get_config()->get_web_title();
 	}
 
+  protected function render_aditional_template_heads($apc) {
+		//nothing needed
+	}  
+
 	protected function do_body($apc) { ?>
 		<header>
 			<?php $this->do_header($this->get_config()->get_web_title(), $apc); ?>

@@ -41,22 +41,22 @@ abstract class NormalPageTemplate extends PreRenderingPageTemplate {
 		<meta name="keywords" content="<?= $this->config->get_web_keywords() ?>">
 		<meta name="generator" content="nanotube-cms">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+
+		<?php $this->render_aditional_template_heads($apc); ?>
+
 		<?= Tools::render_array($apc->get_pre_heads()) ?>
 
 		<link rel="stylesheet" href="css/styles.css" type="text/css" />
 		<script type="text/javascript" src="js/scripts.js"></script>
 
 		<?= Tools::render_array($apc->get_post_heads()) ?>
-
-		<?php $this->add_specific_headers() ?>
 	<?php }
 
 	protected function do_site_content($apc) {
 		Tools::run_html_with_php($apc, $this->site->get_content());
 	}
 
-	protected abstract function add_specific_headers();
+	protected abstract function render_aditional_template_heads($apc);
 
 
  	public function render_site($site, $resources_root) {

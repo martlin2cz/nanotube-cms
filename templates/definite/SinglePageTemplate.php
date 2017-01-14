@@ -38,7 +38,7 @@ abstract class SinglePageTemplate extends PreRenderingPageTemplate {
 
 	protected function do_head($apc) { ?>
 		<title><?= $this->get_title() ?><?= $apc->get_title_suffix() ?></title>
-		
+
 		<?php if (!is_null($apc->get_resources_root())) { ?>
       <base href="<?= $apc->get_resources_root() ?>" >
 		<?php } ?>
@@ -49,6 +49,9 @@ abstract class SinglePageTemplate extends PreRenderingPageTemplate {
 		<meta name="generator" content="nanotube-cms">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+		<?php $this->render_aditional_template_heads($apc); ?>
+
+
 		<?php Tools::render_array($apc->get_pre_heads()) ?>
 	
 		<link rel="stylesheet" href="css/styles.css" type="text/css" />
@@ -56,6 +59,8 @@ abstract class SinglePageTemplate extends PreRenderingPageTemplate {
 		
 		<?php Tools::render_array($apc->get_post_heads()); ?>
 	<?php }
+
+	protected abstract function render_aditional_template_heads($apc);
 
 	protected function do_site_content($apc, $site) {
 		Tools::run_html_with_php($apc, $site->get_content());		

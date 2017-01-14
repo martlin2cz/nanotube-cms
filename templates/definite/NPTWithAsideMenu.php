@@ -50,9 +50,9 @@ class NPTWithAsideMenu extends NormalPageTemplate {
 		return $site_title . " | " . $web_title;
 	}
 
-	protected function add_specific_headers() {
-		//nothing
-	}
+  protected function render_aditional_template_heads($apc) {
+    //nothing needed
+  }  
 
 	protected function do_page_header($site_title, $web_title, $apc) { ?>
 		<h1><?= $web_title ?></h1>
