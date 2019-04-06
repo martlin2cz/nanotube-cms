@@ -116,7 +116,7 @@ class Tools {
 
 		$absolute = $dir . '/' . $relative;
 		header('Location: ' . $absolute);
-		die("\nHastala vista, baby!");
+		die("\nHastala vista, baby! (Redirecting to $relative)");
 	}
 
 	static private function ends_with($string, $ending) {

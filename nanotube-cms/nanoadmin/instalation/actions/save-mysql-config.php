@@ -47,7 +47,7 @@ $db = new MysqlDatabase($config);
 
 $succ = $db->test();
 if (!$succ) {
-	Errors::add("Database error", "Cannot connect to database");
+	Errors::add("Database error", "Cannot connect to database", true);
 }
 
 ActionTemplate::check_errors();
