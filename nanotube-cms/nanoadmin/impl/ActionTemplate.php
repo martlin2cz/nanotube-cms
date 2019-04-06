@@ -58,7 +58,7 @@ class ActionTemplate {
 			self::$before_content_yet_done = true;
 		}
 
-		$error = new Error("Some errors occured", "Following errors occured. This is not fatal, but the requested operation may be not completed successfully.", false);
+		$error = new NanoError("Some errors occured", "Following errors occured. This is not fatal, but the requested operation may be not completed successfully.", false);
 		NAtemplate::do_error($error);
 
 		foreach ($errors as $error) {

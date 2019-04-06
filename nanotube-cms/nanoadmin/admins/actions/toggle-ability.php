@@ -29,7 +29,7 @@ $admin->set_enabled(! $admin->is_enabled());
 $succ = $admins->update_admin($admin->get_username(), $admin);
 
 if (!$succ) {
-	Errors::add("Database Error", "Operation could not be performed.", true);
+	Errors::add("Database NanoError", "Operation could not be performed.", true);
 }
 
 ActionTemplate::check_errors();

@@ -1,6 +1,6 @@
 <?php
 
-class Error {
+class NanoError {
 	private $title;
 	private $message;
 	private $is_critical;
@@ -28,7 +28,7 @@ class Error {
 	// others
 
 	public function __toString() {
-		return "Error: " . $this->title . " (" . $this->message . ")";
+		return "NanoError: " . $this->title . " (" . $this->message . ")";
 	}
 }
 

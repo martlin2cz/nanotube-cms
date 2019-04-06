@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/dataobj/Error.php');
+require_once(__DIR__ . '/dataobj/NanoError.php');
 
 class Errors {
 
@@ -23,7 +23,7 @@ class Errors {
 
 
 	static public function add($title, $message, $is_critical) {
-		$error = new Error($title, $message, $is_critical);
+		$error = new NanoError($title, $message, $is_critical);
 		self::add_error($error);
 	}
 

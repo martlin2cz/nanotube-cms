@@ -92,7 +92,7 @@ Errors::clear_errors();	//yeah, here are just annoying
 		<?php if ($is_db_test_ok) { ?>
 			<?php NAtemplate::do_success("<p>Connected to database! Now you can continue.</p>"); ?>	
 		<?php } else { ?>
-			<?php NAtemplate::do_error(new Error("Error", "<p>Cannot connect to the database! Make sure you entered corect configuration and have sufficient permissions. Try direct connect (using <code>mysql</code>).</p>", true)); ?>	
+			<?php NAtemplate::do_error(new NanoError("NanoError", "<p>Cannot connect to the database! Make sure you entered corect configuration and have sufficient permissions. Try direct connect (using <code>mysql</code>).</p>", true)); ?>	
 		<?php } ?>	
 	<?php } ?>
 </fieldset>
@@ -109,7 +109,7 @@ Errors::clear_errors();	//yeah, here are just annoying
 	<?php if ($is_part3_ok === true) { ?>
 		<?php NAtemplate::do_success("<p>Database seems installed! Try to open you web. Note that you still would need to install <a href=\"../plugins/\">plugins</a>.</p>"); ?>	
 	<?php } else if ($is_part3_ok === false) { ?>
-		<?php NAtemplate::do_error(new Error("Error", "<p>Database creation somehow failed. I'm sorry..</p>", true)); ?>	
+		<?php NAtemplate::do_error(new NanoError("NanoError", "<p>Database creation somehow failed. I'm sorry..</p>", true)); ?>	
 	<?php } ?>
 </fieldset>
 </form>

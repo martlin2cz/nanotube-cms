@@ -25,8 +25,8 @@ global $bar;
 echo "loaded? $bar\n";
 
 // save object #1
-require_once(__DIR__ . '/nanotube-cms/impl/dataobj/Error.php');
-$db->save_constructored("Error", "error", Array("Test Failure", "Test failed, yea", false));
+require_once(__DIR__ . '/nanotube-cms/impl/dataobj/NanoError.php');
+$db->save_constructored("NanoError", "error", Array("Test Failure", "Test failed, yea", false));
 echo "saved #2? \n";
 
 $db->load();
