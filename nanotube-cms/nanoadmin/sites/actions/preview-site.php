@@ -43,7 +43,7 @@ $site->set_visible(true);
 ActionTemplate::check_errors();
 
 $template = Tools::get_template();
-$template->render_site($site, "../../../../");
+$template->render_site($site, "../../../../../");
 
 ?>
 

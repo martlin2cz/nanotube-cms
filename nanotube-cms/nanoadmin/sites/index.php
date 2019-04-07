@@ -45,7 +45,7 @@ $sites = Sites::get();
 						<input type="submit" value="<?= ($site->is_visible() ? 'Hide' : 'Show') ?>">
 					</form>
 				</td>
-				<td><a href="<?= NAtemplate::get_path_to_root() . '../../' .  Tools::make_link($site->get_id()) ?>" target="_blank">Open</a></td>
+				<td><a href="<?= NAtemplate::get_path_to_root() . '../../../' .  Tools::make_link($site->get_id()) ?>" target="_blank">Open</a></td>
 
 			</tr>
 		<?php } ?>
