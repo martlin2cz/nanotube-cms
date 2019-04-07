@@ -15,6 +15,10 @@ class MysqlDatabase {
 	}
 
 	private function connect() {
+		if (!$this->config->get_mysql_database()) {
+			Errors::add("Database error", "MySQL not configured.", true);
+			return false;
+		}
 		$this->connection = new mysqli(
 			$this->config->get_mysql_server(),
 			$this->config->get_mysql_user(),
@@ -49,8 +53,10 @@ class MysqlDatabase {
 		return $this->connection->query($sql); 
 	}
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 	public function create_table($name, $spec) {
-		$this->connect();
+		if (!$this->connect()) return false;
 		$sql = "CREATE TABLE $name $spec";
 
 		$this->invoke_sql($sql);
@@ -58,7 +64,7 @@ class MysqlDatabase {
 	}
 
 	public function drop_table($name) {
-		$this->connect();
+		if (!$this->connect()) return false;
 		$sql = "DROP TABLE $name";
 
 		$this->invoke_sql($sql);
@@ -66,7 +72,7 @@ class MysqlDatabase {
 	}
 
 	public function insert($table, $columns, $values) {
-		$this->connect();
+		if (!$this->connect()) return false;
 		$sql = "INSERT INTO $table $columns VALUES $values";
 
 		$this->invoke_sql($sql);
@@ -74,7 +80,7 @@ class MysqlDatabase {
 	}
 	
 	public function update($table, $sets, $where) {
-		$this->connect();
+		if (!$this->connect()) return false;
 		$sql = "UPDATE $table SET $sets";
 		if ($where) {
 			$sql .= " WHERE $where";
@@ -85,7 +91,7 @@ class MysqlDatabase {
 	}
 	
 	public function delete($table, $where) {
-		$this->connect();
+		if (!$this->connect()) return false;
 		$sql = "DELETE FROM $table";
 		if ($where) {
 			$sql .= " WHERE $where";
@@ -100,7 +106,7 @@ class MysqlDatabase {
 
 
 	public function select($table, $columns, $where, $order) {
-		$this->connect();
+		if (!$this->connect()) return false;
 		$sql = "SELECT $columns FROM  $table";
 		if ($where) {
 			$sql .= " WHERE $where";
@@ -119,7 +125,7 @@ class MysqlDatabase {
 	}
 
 	public function test() {
-		$this->connect();
+		if (!$this->connect()) return false;
 
 		$sql = "SELECT 'It works!'";
 		$result = $this->invoke_sql($sql);

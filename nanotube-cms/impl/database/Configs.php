@@ -58,7 +58,7 @@ class Configs {
 		$config->set_web_title("Web");
 		
 		$passwording = new Passwording();
-		$hash = $passwording->generate_password_hash("his_nano_password");
+		$hash = $passwording->generate_password_hash("his_nano_pa55word");
 		$config->set_na_password($hash[0]);		
 		$config->set_na_password_salt($hash[1]);		
 
