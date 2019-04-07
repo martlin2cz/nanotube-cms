@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../nanotube-cms/templates/definite/NPTWithAsideMenu.php');
+require_once(__DIR__ . '/../nanotube-cms/nanotube-cms/templates/definite/NPTWithAsideMenu.php');
 
 /**
  * Template leaving the default just as is.
