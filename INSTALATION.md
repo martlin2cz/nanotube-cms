@@ -2,7 +2,7 @@
 
 This document describes instalation, updating and uninstalation of *nanotube-cms*.
 
-## Installation
+## Instalation
 ### Step one - the empty web
 
 Assuming you want to have your web project in `webby` directory. Do
