@@ -133,7 +133,9 @@ class Admins {
 			. "PRIMARY KEY (username), "
 			. "KEY (username)"
 			. ")");
-		$inserted = $this->create_admin(new Admin(NANOADMIN_USERNAME, "Admin Nano", "pass", "salt", true, time(), time()));
+		$inserted = $this->create_admin(new Admin(NANOADMIN_USERNAME, "Admin Nano", 
+			$config->get_na_password(), $config->get_na_password_salt(), 
+			true, time(), time()));
 		return $created && $inserted;
 	}
 
