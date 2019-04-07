@@ -87,7 +87,7 @@ class Tools {
 	}
 
 	static private function include_template_file() {
-		$root = __DIR__ . "/../../";
+		$root = __DIR__ . "/../../../";
 		$file = $root . TEMPLATES_DIR . TEMPLATE_CLASS_NAME . ".php";
 		require_once($file);
 	}
