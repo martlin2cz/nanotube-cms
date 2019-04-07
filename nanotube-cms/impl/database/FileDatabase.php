@@ -10,7 +10,7 @@ class FileDatabase {
 	}
 
 	private function get_path() {
-		$path = __DIR__ . "/../../../" . $this->file;
+		$path = __DIR__ . "/../../../../" . $this->file;
 		return $path;
 	}
 
