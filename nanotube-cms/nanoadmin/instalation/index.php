@@ -54,6 +54,13 @@ Errors::clear_errors();	//yeah, here are just annoying
 	<label>Some keywords</label>
 	<input type="text" name="web-keywords" placeholder="personal, web, websites" value="<?= $config->get_web_keywords() ?>">
 
+	<label>Nanoadmin password</label>
+	<input type="password" name="nanoadmin-password" placeholder="<?= ($is_part1_ok ? 'enter something to change' : 'type the password') ?>" value="">
+
+	<label>Confirm password</label>
+	<input type="password" name="confirm-password" placeholder="confirm the password" value="">
+
+
 	<div class="buttons-panel">	
 		<input type="submit" value="Save">
 		<input type="reset" value="Revert">
@@ -107,11 +114,15 @@ Errors::clear_errors();	//yeah, here are just annoying
 	</div>
 
 	<?php if ($is_part3_ok === true) { ?>
-		<?php NAtemplate::do_success("<p>Database seems installed! Try to open you web. Note that you still would need to install <a href=\"../plugins/\">plugins</a>.</p>"); ?>	
+		<?php NAtemplate::do_success("<p>Database seems installed! Try to open you web now.</p>"); ?>	
 	<?php } else if ($is_part3_ok === false) { ?>
 		<?php NAtemplate::do_error(new NanoError("NanoError", "<p>Database creation somehow failed. I'm sorry..</p>", true)); ?>	
 	<?php } ?>
 </fieldset>
 </form>
 
+<fieldset>
+	<legend><h2>4) Complete the instalation</h2></legend>
+	<p>The web may be ready now, but please <a href="../../../../" target="_blank">check it</a>. If so, <a href="../admins/edit-admin.php" target="_blank">create your admin account</a>. After that log out and relog to that account. Then you could edit the <a href="../sites" target="_blank">sites</a> and/or install the <a href="../plugins" target="_blank">plugins</a>. Also, you may update the template. Happy coding!</p>
+</fieldset>
 <?php NAtemplate::after_content(); ?>

@@ -18,7 +18,7 @@ ActionTemplate::before_start("../../", true);
 //config
 $admins = Admins::get();
 $sites = Sites::get();
-$plugins = new Plugins();
+//$plugins = new Plugins();
 
 $admins_ok = $admins->install();
 if (!$admins_ok) {
@@ -30,10 +30,10 @@ if (!$sites_ok) {
 		Errors::add("Database error creation error", "Cannot initialize sites", true);
 }
 
-$plugins_ok = $plugins->install();
-if (!$plugins_ok) {
-		Errors::add("Plugins install error", "Cannot install plugins", true);
-}
+//$plugins_ok = $plugins->install();
+//if (!$plugins_ok) {
+//		Errors::add("Plugins install error", "Cannot install plugins", true);
+//}
 
 ActionTemplate::check_errors();
 ActionTemplate::success("../");
